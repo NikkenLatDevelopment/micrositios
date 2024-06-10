@@ -47,24 +47,28 @@
                         <th scope="col">Semana 2</th>
                         <th scope="col">Semana 3</th>
                         <th scope="col">Semana 4</th>
+                        <th scope="col">Semana 5</th>
                         <th scope="col">Cumple 4x4</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>                            
-                        </tr>                        
+                        @foreach($results as $val)
+                        <tr>                            
+                            <td scope="row">{{ $val->associateid }}</td>
+                            <td>{{ $val->associateName }}</td>
+                            <td>{{ $val->tipo }}</td>
+                            <td>{{ $val->rangoSocio }}</td>
+                            <td>{{ $val->pais }}</td>
+                            <td>{{ $val->telefono }}</td>
+                            <td>{{ $val->email }}</td>                            
+                            <td>{{ $val->semana_1 }}</td>
+                            <td>{{ $val->semana_2 }}</td>
+                            <td>{{ $val->semana_3 }}</td>
+                            <td>{{ $val->semana_4 }}</td>
+                            <td>{{ $val->semana_5 }}</td>
+                            <td>{{ $val->ganador }}</td>                           
+                        </tr>                   
+                        @endforeach     
                     </tbody>
                 </table>
                 

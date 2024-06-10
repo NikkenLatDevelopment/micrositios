@@ -24,5 +24,6 @@ class LoginLayout extends Component
     public function render()
     {
         return view('layouts.login-layout');
+        
     }
 }
