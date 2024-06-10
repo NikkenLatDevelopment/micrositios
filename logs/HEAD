@@ -10,3 +10,4 @@ d33033571b83effc7b95acb7d4031774492f3b8c 0e2ab8af1d5309ddcc3ca1f1a6f804ebd4e5deb
 fd0b4c5d086cf673624ed37580b4da72d45ddbf7 13d872a3668b6dcf168f972f86d3390d15a679c6 gzamudioc <gzamudioc@nikkenlatam.com> 1717107323 -0600	commit: se agrega jquery a laravel
 13d872a3668b6dcf168f972f86d3390d15a679c6 7203634b68d9ab225f73c311ed78927e2b9df016 gzamudioc <gzamudioc@nikkenlatam.com> 1717112916 -0600	commit: agrega validación de email y password
 7203634b68d9ab225f73c311ed78927e2b9df016 2f445a1722b658dc5886452ff227e4a5d9460c6f gzamudioc <gzamudioc@nikkenlatam.com> 1717774949 -0600	commit: agrega file createTicket
+2f445a1722b658dc5886452ff227e4a5d9460c6f b4f7a6f4917440f41440b502865ee303cddf3b57 gzamudioc <gzamudioc@nikkenlatam.com> 1718050550 -0600	commit: test
