@@ -23,6 +23,6 @@ class layoutGeneral extends Component
      */
     public function render()
     {
-        return view('layouts.layoutGeneral');
+        return view('components.layoutGeneral');
     }
 }
