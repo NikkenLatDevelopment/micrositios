@@ -1,1 +1,31 @@
-agrega file createTicket
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   app/Http/Controllers/generalController.php
+#	new file:   app/View/Components/layoutGeneral.php
+#	deleted:    database/migrations/2024_05_15_204516_create_tickets_table.php
+#	deleted:    database/migrations/2024_05_15_222500_create_notification_table.php
+#	deleted:    database/migrations/2024_05_15_230240_create_types_table.php
+#	deleted:    database/migrations/2024_05_15_231218_create_priorities_table.php
+#	deleted:    database/migrations/2024_05_16_000557_create_comments_table.php
+#	modified:   public/css/app.css
+#	new file:   public/images/LOG.png
+#	new file:   public/images/bg-nikken.png
+#	new file:   public/images/favicon.ico
+#	new file:   public/images/logo-nikken.png
+#	modified:   resources/sass/app.scss
+#	modified:   resources/sass/general.scss
+#	new file:   resources/sass/seguimiento-organizacion.scss
+#	new file:   resources/sass/seguimiento-personal.scss
+#	new file:   resources/views/layouts/layout-general.blade.php
+#	new file:   resources/views/reportes/seguimiento-organizacion.blade.php
+#	new file:   resources/views/reportes/seguimiento-personal.blade.php
+#	new file:   resources/views/reportes/seguimiento-staff.blade.php
+#	deleted:    resources/views/tickets/createTicket.blade.php
+#	modified:   routes/web.php
+#
