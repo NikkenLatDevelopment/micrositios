@@ -1,0 +1,33 @@
+{
+  "$id": "17",
+  "AutoRefresh": true,
+  "AutoRefreshRemotes": true,
+  "CommitTextLinks": null,
+  "DraftCommitMsg": "",
+  "IncomingSavedCount": 0,
+  "LastCheckedRemotes": "2024-06-07T09:42:45.0216308-06:00",
+  "LastUsedView": 1,
+  "LogBranchFilterIndex": 0,
+  "OutgoingSavedCount": 0,
+  "SidebarExpandedItems": [
+    "Branches"
+  ],
+  "SidebarWidth": 210.0,
+  "SubtreeLinks": [],
+  "NeedsLargeFilesPull": false,
+  "RemoteProjectLinks": [
+    {
+      "$id": "18",
+      "BaseUrl": "https://github.com",
+      "Identifier": "NikkenLatDevelopment/seguimientoticket",
+      "RemoteName": "origin",
+      "Type": 0,
+      "Username": "utn19@hotmail.com",
+      "CloneUrl": null,
+      "ProjectUrl": null,
+      "AccountId": "",
+      "AvatarUrl": null,
+      "DisplayName": "origin: https://github.com"
+    }
+  ]
+}
