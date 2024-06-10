@@ -1,4 +1,4 @@
-<x-layout-general>
+<x-layoutGeneral>
 @section('title', 'Seguimiento Staff')
 <div id="seguimiento-organizacion">
     <nav class="navbar bg-body-tertiary nvar">
@@ -103,4 +103,4 @@
         </script>
 @endpush
 
-</x-layout-general>
+</x-layoutGeneral>
