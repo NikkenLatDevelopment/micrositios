@@ -87,7 +87,7 @@
                 },
                 mounted: function() {   
                     var ctx = document.getElementById('myChart').getContext('2d');
-                    console.log(this.semana1+" "+this.semana2);
+                    console.log(this.semana1+" "+this.semana2+" "+this.semana3+" "+this.semana4);
 
                     if(this.semana1 == "SI"){
                         this.colo1="#004c6d";
