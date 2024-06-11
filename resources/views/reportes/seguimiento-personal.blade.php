@@ -96,21 +96,21 @@
                     }
 
                     if(this.semana2 == "SI"){
-                        this.colo2="gray";
+                        this.colo2="#f58220";                        
                     }else{
-                        this.colo2="#f58220";
+                        this.colo2="gray";
                     }
 
                     if(this.semana3 == "SI"){
-                        this.colo3="gray";
-                    }else{
                         this.colo3="#1c8039";
+                    }else{
+                        this.colo2="gray";                        
                     }
 
                     if(this.semana4 == "SI"){
-                        this.colo4="gray";
-                    }else{
                         this.colo4="#00a3e0";
+                    }else{
+                        this.colo2="gray";                        
                     }
 
                     new Chart(ctx, {
