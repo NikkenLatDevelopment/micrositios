@@ -145,19 +145,32 @@
                     updateTable: function(data) {
                         $('#associatesTable tbody').empty();
                         data.forEach(item => {
+                            var associateId = item.associateId || '';
+                            var associatename = item.associatename ? item.associatename.trim() : '';
+                            var tipo = item.tipo || '';
+                            var rangoSocio = item.rangoSocio || '';
+                            var sponsorname = item.sponsorname || '';
+                            var telefono = item.telefono ? item.telefono.trim() : '';
+                            var email = item.email ? item.email.trim() : '';
+                            var semana_1 = item.semana_1 || 'NO';
+                            var semana_2 = item.semana_2 || 'NO';
+                            var semana_3 = item.semana_3 || 'NO';
+                            var semana_4 = item.semana_4 || 'NO';
+                            var ganador = item.ganador || 'NO';
+
                             var row = `<tr>
-                                <td>${item.associateId}</td>
-                                <td>${item.associatename.trim()}</td>
-                                <td>${item.tipo}</td>
-                                <td>${item.rangoSocio}</td>
-                                <td>${item.sponsorname}</td>
-                                <td style="max-width:100px;">${item.telefono.trim()}</td>
-                                <td>${item.email.trim()}</td>
-                                <td>${item.semana_1}</td>
-                                <td>${item.semana_2}</td>
-                                <td>${item.semana_3}</td>
-                                <td>${item.semana_4}</td>
-                                <td>${item.ganador}</td>
+                                <td>${associateId}</td>
+                                <td>${associatename}</td>
+                                <td>${tipo}</td>
+                                <td>${rangoSocio}</td>
+                                <td>${sponsorname}</td>
+                                <td style="max-width:100px;">${telefono}</td>
+                                <td>${email}</td>
+                                <td>${semana_1}</td>
+                                <td>${semana_2}</td>
+                                <td>${semana_3}</td>
+                                <td>${semana_4}</td>
+                                <td>${ganador}</td>
                             </tr>`;
                             $('#associatesTable tbody').append(row);
                         });
