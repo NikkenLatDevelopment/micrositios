@@ -27,4 +27,5 @@ Route::post('/getSeguimientoOrganizacion', [generalController::class, 'get_segui
 Route::post('/getSeguimientoOrganizacionArbol', [generalController::class, 'get_seguimiento_organizacion_arbol_completo'])->name('seguimientoOrganizacion.getArvol');
 
 Route::get('/seguimientoStaff', [generalController::class, 'index_seguimiento_staff'])->name('seguimiento-staff.index');
-Route::get('/seguimientoPersonal', [generalController::class, 'index_seguimiento_personal'])->name('seguimiento-personal.index');
+
+Route::get('/seguimientoPersonal/{cod}', [generalController::class, 'index_seguimiento_personal'])->name('seguimiento-personal.index');
