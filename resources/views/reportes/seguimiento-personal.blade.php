@@ -104,13 +104,13 @@
                     if(this.semana3 == "SI"){
                         this.colo3="#1c8039";
                     }else{
-                        this.colo2="gray";                        
+                        this.colo3="gray";                        
                     }
 
                     if(this.semana4 == "SI"){
                         this.colo4="#00a3e0";
                     }else{
-                        this.colo2="gray";                        
+                        this.colo4="gray";                        
                     }
 
                     new Chart(ctx, {
