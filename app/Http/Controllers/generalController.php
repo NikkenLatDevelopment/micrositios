@@ -42,7 +42,7 @@ class generalController extends Controller
         CASE WHEN semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
         CASE WHEN ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
     FROM dwt_estrategiareto4x4
-    WHERE sponsorid = :sponsorId AND rangoSocio <= 3
+    WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
 
     UNION
 
@@ -66,13 +66,14 @@ class generalController extends Controller
     INNER JOIN (
         SELECT associateid 
         FROM dwt_estrategiareto4x4 
-        WHERE sponsorid = :sponsorId AND rangoSocio <= 3
+        WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
     ) b ON a.sponsorid = b.associateid
     ORDER BY associateName ASC
 ";
+//dd($query);
 
 try {
-    $results = DB::connection('75')->select($query, ['sponsorId' => $request->codigo]);
+    $results = DB::connection('75')->select($query);
     dd($results);
 } catch (\Exception $e) {
     //Log::error('SQL Error: ' . $e->getMessage());
