@@ -127,18 +127,17 @@
 
                                 var url = '{{ route("seguimientoOrganizacion.get") }}';
                                 axios.post(url, {
-                                    'codigo': this.codigo,                                                                
-
+                                    'codigo': this.codigo,      
                                 }).then(response => {                                                        
                                     if (response.data) {     
                                         console.log(response.data);
                                         //this.associates = response.data;
                                         $('#associatesTable tbody').empty();
 
-                                        var data = response.data;
+                                        var data1 = response.data;
 
-                                        data.forEach(function(item) {
-                                            var row = '<tr>' +
+                                        data1.forEach(function(item) {
+                                            var row1 = '<tr>' +
                                                     '<td>' + item.associateId + '</td>' +
                                                     '<td>' + item.associatename.trim() + '</td>' +
                                                     '<td>' + item.tipo + '</td>' +
@@ -152,7 +151,7 @@
                                                     '<td>' + item.semana_4 + '</td>' +
                                                     '<td>' + item.ganador + '</td>' +
                                                     '</tr>';
-                                            $('#associatesTable tbody').append(row);
+                                            $('#associatesTable tbody').append(row1);
                                         });
 
                                     }
