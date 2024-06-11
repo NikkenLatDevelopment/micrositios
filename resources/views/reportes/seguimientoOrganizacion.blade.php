@@ -26,8 +26,8 @@
                 </form>
 
                 <form class="d-flex float-end" role="search">                        
-                        <input class="form-control me-2" type="search" placeholder="Ingresa código" id="codigo" aria-label="Buscar">
-                        <button class="btn btn-outline-success" type="submit" @click.prevent="consulta()">Buscar</button>
+                        <input class="form-control me-2" type="search" placeholder="Ingresa tu búsqueda" id="codigo" aria-label="Buscar">
+                        {{--<button class="btn btn-outline-success" type="submit" @click.prevent="consulta()">Buscar</button>--}}
                 </form>
             
 
