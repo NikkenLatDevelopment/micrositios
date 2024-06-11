@@ -121,8 +121,9 @@
                     },
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
-                            alert('Opción seleccionada: ' + this.selectedOption);
+                            //alert('Opción seleccionada: ' + this.selectedOption);
                             if(this.selectedOption == "1"){
+                                alert('Opción seleccionada: ' + this.selectedOption);
 
                                 var url = '{{ route("seguimientoOrganizacion.get") }}';
                                 axios.post(url, {
