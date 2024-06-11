@@ -3,15 +3,19 @@
 namespace App\Exports;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\SeguimientoStaff;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\Exportable;
 
 class SeguimientoStaffExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    use Exportable;
+
+    public function query()
     {
         $query = "
             SELECT 
@@ -46,9 +50,8 @@ class SeguimientoStaffExport implements FromCollection
             CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5,
             CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
             FROM dwt_estrategiareto4x4";
-            
-        $results = DB::connection('75')->select($query);
-        return collect($results);
+        
+        return DB::connection('75')->table(DB::raw("($query) as sub"));
     }
 
     public function headings(): array
@@ -70,6 +73,28 @@ class SeguimientoStaffExport implements FromCollection
             'Semana 4',
             'Semana 5',
             'Ganador'
+        ];
+    }
+
+    public function map($row): array
+    {
+        return [
+            $row->associateid,
+            $row->associateName,
+            $row->tipo,
+            $row->rangoSocio,
+            $row->pais,
+            $row->telefono,
+            $row->email,
+            $row->sponsorid,
+            $row->sponsorName,
+            $row->rangoSponsor,
+            $row->semana_1,
+            $row->semana_2,
+            $row->semana_3,
+            $row->semana_4,
+            $row->semana_5,
+            $row->ganador
         ];
     }
 }

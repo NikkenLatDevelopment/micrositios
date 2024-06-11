@@ -34,5 +34,5 @@ Route::post('/getSeguimientoStaff', [generalController::class, 'get_seguimiento_
 Route::get('/seguimientoPersonal/{cod}', [generalController::class, 'index_seguimiento_personal'])->name('seguimiento-personal.index');
 
 Route::get('/export-seguimiento-staff', function () {
-    return Excel::download(new SeguimientoStaffExport, 'seguimiento_staff.xlsx');
+    return (new SeguimientoStaffExport)->download('seguimiento_staff.xlsx');
 })->name('export.seguimiento-staff');
