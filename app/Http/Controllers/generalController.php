@@ -167,7 +167,7 @@ class generalController extends Controller
         //
         //dd($query);
         $results = DB::connection('75')->select($query);
-        $s1 = $results->semana_1;
+        $s1 = $results['semana_1'];
         dd($s1);
 
         return view('reportes.seguimiento-personal');
