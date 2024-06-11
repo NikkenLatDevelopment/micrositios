@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-12">
 
-                <table class="table">
+                <table class="table" id="associatesTable">
                     <thead>
                         <tr>
                             <th scope="col" style="border: none;">Guardar <i class="fa-solid fa-file-excel"></i></th>                            
@@ -122,7 +122,27 @@
                                 }).then(response => {                                                        
                                     if (response.data) {     
                                         console.log("1");
-                                        this.associates = response.data;
+                                        //this.associates = response.data;
+                                        var data = response.data;
+
+                                        data.forEach(function(item) {
+                                            var row = '<tr>' +
+                                                    '<td>' + item.associateId + '</td>' +
+                                                    '<td>' + item.associatename.trim() + '</td>' +
+                                                    '<td>' + item.tipo + '</td>' +
+                                                    '<td>' + item.rangoSocio + '</td>' +
+                                                    '<td>' + item.telefono.trim() + '</td>' +
+                                                    '<td>' + item.email.trim() + '</td>' +
+                                                    '<td>' + item.sponsorname + '</td>' +
+                                                    '<td>' + item.semana_1 + '</td>' +
+                                                    '<td>' + item.semana_2 + '</td>' +
+                                                    '<td>' + item.semana_3 + '</td>' +
+                                                    '<td>' + item.semana_4 + '</td>' +
+                                                    '<td>' + item.ganador + '</td>' +
+                                                    '</tr>';
+                                            $('#associatesTable tbody').append(row);
+                                        });
+
                                     }
                                 }).catch(error => {
                                     console.log("ssd");
@@ -137,7 +157,26 @@
 
                                 }).then(response => {                                                        
                                     if (response.data) { 
-                                        console.log("2");                               
+                                        console.log("2"); 
+                                        var data = response.data;
+
+                                        data.forEach(function(item) {
+                                            var row = '<tr>' +
+                                                    '<td>' + item.associateId + '</td>' +
+                                                    '<td>' + item.associatename.trim() + '</td>' +
+                                                    '<td>' + item.tipo + '</td>' +
+                                                    '<td>' + item.rangoSocio + '</td>' +
+                                                    '<td>' + item.telefono.trim() + '</td>' +
+                                                    '<td>' + item.email.trim() + '</td>' +
+                                                    '<td>' + item.sponsorname + '</td>' +
+                                                    '<td>' + item.semana_1 + '</td>' +
+                                                    '<td>' + item.semana_2 + '</td>' +
+                                                    '<td>' + item.semana_3 + '</td>' +
+                                                    '<td>' + item.semana_4 + '</td>' +
+                                                    '<td>' + item.ganador + '</td>' +
+                                                    '</tr>';
+                                            $('#associatesTable tbody').append(row);
+                                        });                              
                                     
                                     }
                                 }).catch(error => {
