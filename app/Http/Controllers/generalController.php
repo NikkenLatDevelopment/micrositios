@@ -61,8 +61,11 @@ class generalController extends Controller
         CASE WHEN a.semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
         CASE WHEN a.ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
     FROM dwt_estrategiareto4x4 a
-    INNER JOIN (SELECT associateid FROM dwt_estrategiareto4x4 WHERE sponsorid = :sponsorId AND rangoSocio <= 3) b
-        ON a.sponsorid = b.associateid
+    INNER JOIN (
+        SELECT associateid 
+        FROM dwt_estrategiareto4x4 
+        WHERE sponsorid = :sponsorId AND rangoSocio <= 3
+    ) b ON a.sponsorid = b.associateid
     ORDER BY associateName ASC
 ";
 
