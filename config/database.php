@@ -100,10 +100,7 @@ return [
             'password' => env('DB_PASSWORD_75', ''),
             'charset' => 'utf8',
             'prefix' => '',
-            'prefix_indexes' => true,
-            'options' => [
-                'timeout' => 60,
-            ],
+            'prefix_indexes' => true,            
         ],
 
     ],
