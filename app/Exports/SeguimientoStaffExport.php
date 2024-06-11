@@ -49,8 +49,9 @@ class SeguimientoStaffExport implements FromQuery, WithHeadings, WithMapping
             CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4,
             CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5,
             CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
-            FROM dwt_estrategiareto4x4";
-        
+            FROM dwt_estrategiareto4x4
+            ORDER BY associateid"; // Asegúrate de que estás ordenando por un campo relevante
+          
         return DB::connection('75')->table(DB::raw("($query) as sub"));
     }
 
