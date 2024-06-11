@@ -136,7 +136,7 @@ class generalController extends Controller
         CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
         FROM dwt_estrategiareto4x4";
 
-        $results = DB::connection('75')->select($query);
+        $results = DB::connection('75')->select($query)->paginate(20);
 
         return $results;
     }
