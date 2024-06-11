@@ -88,7 +88,7 @@
                 el: '#seguimiento-organizacion',
                 data: {      
                     currentPage: 1,
-                    perPage: 100,
+                    perPage: 10000,
                     totalPages: 1             
                 },
                 filters: {},

@@ -102,7 +102,7 @@ class generalController extends Controller
     public function get_seguimiento_staff(Request $request)
 {
     $page = $request->input('page', 1); // Obtener la página actual
-    $perPage = 100; // Número de registros por página
+    $perPage = 10000; // Número de registros por página
     $offset = ($page - 1) * $perPage;
 
     // Consulta para obtener el número total de registros
