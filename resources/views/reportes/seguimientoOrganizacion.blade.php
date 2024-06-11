@@ -119,7 +119,7 @@
                     },
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
-                            console.log('Opción seleccionada:', this.selectedOption);
+                            //console.log('Opción seleccionada:', this.selectedOption);
 
                             if (this.selectedOption == "1") {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.get") }}');
@@ -133,7 +133,7 @@
                             'codigo': this.codigo
                         }).then(response => {
                             if (response.data) {
-                                console.log('Datos recibidos:', response.data);
+                                //console.log('Datos recibidos:', response.data);
                                 this.updateTable(response.data);
                             }
                         }).catch(error => {
