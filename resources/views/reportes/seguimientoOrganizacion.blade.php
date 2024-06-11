@@ -123,6 +123,8 @@
                                     if (response.data) {     
                                         console.log("1");
                                         //this.associates = response.data;
+                                        $('#associatesTable tbody').empty();
+
                                         var data = response.data;
 
                                         data.forEach(function(item) {
@@ -158,7 +160,9 @@
                                 }).then(response => {                                                        
                                     if (response.data) { 
                                         console.log("2"); 
-                                        var data = response.data;
+                                        $('#associatesTable tbody').empty();
+
+                                        var data = response.data;                                        
 
                                         data.forEach(function(item) {
                                             var row = '<tr>' +
