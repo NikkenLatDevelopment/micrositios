@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\generalController;
-
+use App\Exports\SeguimientoStaffExport;
+use Maatwebsite\Excel\Facades\Excel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,7 @@ Route::get('/seguimientoStaff', [generalController::class, 'index_seguimiento_st
 Route::post('/getSeguimientoStaff', [generalController::class, 'get_seguimiento_staff'])->name('seguimiento-staff.get');
 
 Route::get('/seguimientoPersonal/{cod}', [generalController::class, 'index_seguimiento_personal'])->name('seguimiento-personal.index');
+
+Route::get('/export-seguimiento-staff', function () {
+    return Excel::download(new SeguimientoStaffExport, 'seguimiento_staff.xlsx');
+})->name('export.seguimiento-staff');

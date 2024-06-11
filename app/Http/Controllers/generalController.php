@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class generalController extends Controller
 {
@@ -195,7 +196,7 @@ class generalController extends Controller
 
         return view('reportes.seguimiento-personal',compact("s1","s2","s3","s4"));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
