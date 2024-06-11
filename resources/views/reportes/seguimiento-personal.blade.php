@@ -87,26 +87,27 @@
                 },
                 mounted: function() {   
                     var ctx = document.getElementById('myChart').getContext('2d');
+                    console.log(this.semana1+" "+this.semana2);
 
-                    if(this.semana1 == ""){
-                        this.colo1="gray";
-                    }else{
+                    if(this.semana1 == "SI"){
                         this.colo1="#004c6d";
+                    }else{
+                        this.colo1="gray";                        
                     }
 
-                    if(this.semana2 == ""){
+                    if(this.semana2 == "SI"){
                         this.colo2="gray";
                     }else{
                         this.colo2="#f58220";
                     }
 
-                    if(this.semana3 == ""){
+                    if(this.semana3 == "SI"){
                         this.colo3="gray";
                     }else{
                         this.colo3="#1c8039";
                     }
 
-                    if(this.semana4 == ""){
+                    if(this.semana4 == "SI"){
                         this.colo4="gray";
                     }else{
                         this.colo4="#00a3e0";
