@@ -99,11 +99,12 @@
                 },
                 mounted: function() {   
 					
-					const self = this;
-                    $('#codigo').on('keyup', function() {
-                        self.searchQuery = $(this).val().toLowerCase();
+					$('#codigo').on('keyup', function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#associatesTable tbody tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                        });
                     });
-
                     
                 },
                 computed: {
