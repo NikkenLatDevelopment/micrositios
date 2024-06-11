@@ -28,12 +28,9 @@
         <div class="row">
             <div class="col-12">
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="border: none;">Guardar <i class="fa-solid fa-file-excel"></i></th>                            
-                        </tr>
-                    </thead>
+                <button class="btn btn-info mb-3" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button>
+
+                <table class="table table-striped table-hover" id="associatesTable">                   
                     <thead>
                         <tr>
                         <th scope="col">Código</th>
@@ -98,6 +95,12 @@
                 watch: {                   
                 },
                 methods: {
+                    exportToExcel: function() {
+                        /* Obtener los datos de la tabla */
+                        var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
+                        /* Generar el archivo Excel */
+                        XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
+                    }
                 }
             });
         </script>
