@@ -146,6 +146,21 @@
                                 
                                 });
                                 
+                            }else{
+
+                                var url = '{{ route("seguimiento-organizacion.getArvol") }}';
+                                axios.post(url, {
+                                    'codigo': this.codigo,                                                                
+
+                                }).then(response => {                                                        
+                                    if (response.data) {                                
+                                    
+                                    }
+                                }).catch(error => {
+                                    console.log("ssd");
+                                
+                                });
+
                             }
                             
                             // Aquí puedes llamar a otra función o realizar alguna acción adicional
