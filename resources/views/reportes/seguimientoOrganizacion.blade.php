@@ -107,33 +107,14 @@
                 },
                 methods: {
                     consulta: function(){
-                        //alert("sss");
-                        var selectedValue = $('#select').val();
-                        var url = '{{ route("seguimiento-organizacion.get") }}';
-                            if (selectedValue == 1) {
-                                axios.post(url, {
-                                'codigo': this.codigo,   
-                                'type': "1",                         
-
-                            }).then(response => {                                                        
-                                if (response.data) {                                
-                                   
-                                }
-                            }).catch(error => {
-                                console.log("ssd");
-                            
-                            });
-                            //alert('Por favor, seleccione una opción.');
-                        } else {
-                            //alert("no");
-                        }
+                        //alert("sss");                        
                     },
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
                             alert('Opción seleccionada: ' + this.selectedOption);
                             if(this.selectedOption == "1"){
 
-                                var url = '{{ route("seguimiento-organizacion.get") }}';
+                                var url = '{{ route("seguimientoOrganizacion.get") }}';
                                 axios.post(url, {
                                     'codigo': this.codigo,                                                                
 

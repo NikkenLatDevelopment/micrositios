@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/seguimientoOrganizacion/{cod}', [generalController::class, 'index_seguimiento_organizacion'])->name('seguimiento-organizacion.index');
-Route::post('/getSeguimientoOrganizacion', [generalController::class, 'get_seguimiento_organizacion_personal'])->name('seguimiento-organizacion.get');
+Route::post('/getSeguimientoOrganizacion', [generalController::class, 'get_seguimiento_organizacion_personal'])->name('seguimientoOrganizacion.get');
 Route::post('/getSeguimientoOrganizacionArbol', [generalController::class, 'get_seguimiento_organizacion_arbol_completo'])->name('seguimientoOrganizacion.getArvol');
 
 Route::get('/seguimientoStaff', [generalController::class, 'index_seguimiento_staff'])->name('seguimiento-staff.index');
