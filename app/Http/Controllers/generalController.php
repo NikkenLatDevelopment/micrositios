@@ -74,9 +74,7 @@ class generalController extends Controller
     public function get_seguimiento_organizacion_arbol_completo(Request $request){
 
         $results = DB::connection('75')
-                ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);
-
-        dd($results);
+                ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);        
 
         return $results;
         
