@@ -120,7 +120,8 @@
                                     'codigo': this.codigo,                                                                
 
                                 }).then(response => {                                                        
-                                    if (response.data) {                                
+                                    if (response.data) {     
+                                        console.log("1");
                                         this.associates = response.data;
                                     }
                                 }).catch(error => {
@@ -135,7 +136,8 @@
                                     'codigo': this.codigo,                                                                
 
                                 }).then(response => {                                                        
-                                    if (response.data) {                                
+                                    if (response.data) { 
+                                        console.log("2");                               
                                     
                                     }
                                 }).catch(error => {
