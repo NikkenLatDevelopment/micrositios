@@ -85,7 +85,9 @@
             
             var register = new Vue({
                 el: '#seguimiento-organizacion',
-                data: {                   
+                data: {  
+                    associates: [],
+            pagination: {}                 
                 },
                 filters: {},
                 beforeMount: function() {                    
@@ -169,11 +171,7 @@
                     </tr>`;
                     tbody.append(row);
                 });
-            },
-            exportToExcel: function() {
-                var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
-                XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
-            },
+            },            
                     exportToExcel: function() {
                         /* Obtener los datos de la tabla */
                         var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
