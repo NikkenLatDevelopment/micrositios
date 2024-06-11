@@ -147,7 +147,7 @@ class generalController extends Controller
         'path' => LengthAwarePaginator::resolveCurrentPath()
     ]);
 
-    return view('seguimiento-staff', ['results' => $paginatedResults]);
+    return $paginatedResults;
     }
 
     public function index_seguimiento_personal($cod)
