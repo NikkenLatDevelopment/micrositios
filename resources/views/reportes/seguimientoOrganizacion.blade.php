@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-12">
 
-                <table class="table" id="associatesTable">
+                <table class="table table-striped table-hover" id="associatesTable">
                     <thead>
                         <tr>
                             <th scope="col" style="border: none;"><button class="btn btn-info" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button></th>                            
