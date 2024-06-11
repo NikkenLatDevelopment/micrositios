@@ -105,6 +105,12 @@ class generalController extends Controller
     $perPage = 100; // Número de registros por página
     $offset = ($page - 1) * $perPage;
 
+    // Consulta para obtener el número total de registros
+    $totalRecordsQuery = "SELECT COUNT(*) as total FROM dwt_estrategiareto4x4";
+    $totalRecordsResult = DB::connection('75')->select($totalRecordsQuery);
+    $totalRecords = $totalRecordsResult[0]->total;
+
+    // Consulta para obtener los registros paginados
     $query = "
         SELECT associateid, associateName, tipo,
             CASE WHEN rangoSocio = 9 THEN 'DRL'
@@ -137,7 +143,12 @@ class generalController extends Controller
 
     $results = DB::connection('75')->select($query);
 
-    return response()->json($results);
+    return response()->json([
+        'data' => $results,
+        'total' => $totalRecords,
+        'perPage' => $perPage,
+        'currentPage' => $page,
+    ]);
 }
 
     public function index_seguimiento_personal($cod)
