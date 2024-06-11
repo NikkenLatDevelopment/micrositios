@@ -2,7 +2,7 @@
 @section('title', 'Seguimiento Organización')
 <div id="seguimiento-organizacion">
     <nav class="navbar bg-body-tertiary nvar">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="{{asset('images/logo-nikken.png')}}" alt="NIKKEN">
             </a>        
@@ -15,9 +15,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 py-4">
-                <h1>Seguimiento Organización</h1>
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container-fliud">
+                        <a class="navbar-brand" href="#">
+                        <img src="{{ asset('images/LOG.png') }}" alt="Bootstrap" width="200">
+                        </a>
+                    </div>
+                </nav>                
 
-                <form class="d-flex float-start" role="">
+                <form class="d-flex float-start py-4" role="">
                         <select id="select" v-model="selectedOption" @change="onSelectChange">
                             <option value="">Seleccione una opción...</option>
                             <option value="1">Grupo Personal</option>
@@ -25,7 +31,7 @@
                         </select>                        
                 </form>
 
-                <form class="d-flex float-end" role="search">                        
+                <form class="d-flex float-end py-4" role="search">                        
                         <input class="form-control me-2" type="search" placeholder="Ingresa tu búsqueda" id="codigo" aria-label="Buscar">
                         {{--<button class="btn btn-outline-success" type="submit" @click.prevent="consulta()">Buscar</button>--}}
                 </form>
@@ -33,6 +39,10 @@
 
             </div>            
         </div>
+
+    </div>
+    <div class="container-fluid">
+        
         <div class="row">
             <div class="col-12">
 
