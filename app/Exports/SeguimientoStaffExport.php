@@ -17,8 +17,8 @@ class SeguimientoStaffExport implements FromQuery, WithHeadings, WithMapping
 
     public function query()
     {
-        $subQuery = "
-            SELECT 
+        $query = "
+            SELECT TOP 100 PERCENT 
                 associateid,
                 associateName,
                 tipo,
@@ -51,8 +51,8 @@ class SeguimientoStaffExport implements FromQuery, WithHeadings, WithMapping
                 CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
             FROM dwt_estrategiareto4x4
             ORDER BY associateid";
-
-        return DB::connection('75')->table(DB::raw("($subQuery) as sub"))
+        
+        return DB::connection('75')->table(DB::raw("($query) as sub"))
             ->orderBy('associateid');
     }
 
