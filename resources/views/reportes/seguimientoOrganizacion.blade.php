@@ -26,7 +26,7 @@
                 </form>
 
                 <form class="d-flex float-end" role="search">                        
-                        <input class="form-control me-2" type="search" placeholder="Ingresa código" v-model="codigo" id="codigo" aria-label="Buscar">
+                        <input class="form-control me-2" type="search" placeholder="Ingresa código" id="codigo" aria-label="Buscar">
                         <button class="btn btn-outline-success" type="submit" @click.prevent="consulta()">Buscar</button>
                 </form>
             
@@ -91,18 +91,29 @@
                 data: {
                     codigo: {!! json_encode($cod) !!},   
                     selectedOption: "",
-                    associates: []             
+                    associates: [],
+                    searchQuery: ''         
                 },
                 filters: {},
                 beforeMount: function() {                    
                 },
                 mounted: function() {   
 					
-						//alert("hola");
+					const self = this;
+                    $('#codigo').on('keyup', function() {
+                        self.searchQuery = $(this).val().toLowerCase();
+                    });
 
                     
                 },
                 computed: {
+                    filteredAssociates: function() {
+                        const query = this.searchQuery.toLowerCase();
+                        return this.associates.filter(function(item) {
+                            return item.associateId.toLowerCase().includes(query) ||
+                                item.associatename.toLowerCase().includes(query);
+                        });
+                    }
                 },
                 watch: {                   
                 },
