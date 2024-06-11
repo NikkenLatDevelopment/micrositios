@@ -113,10 +113,7 @@
                 },
                 watch: {                   
                 },
-                methods: {
-                    consulta: function(){
-                        //alert("sss");                        
-                    },
+                methods: {                    
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
                             //console.log('Opción seleccionada:', this.selectedOption);

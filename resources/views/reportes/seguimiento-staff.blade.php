@@ -18,8 +18,7 @@
                 <h1>Seguimiento Staff</h1>
 
                 <form class="d-flex float-end" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" placeholder="Ingresa tu búsqueda" id="codigo" aria-label="Search">                        
                 </form>
             
 
@@ -93,10 +92,24 @@
                         $("#cargando").hide();
                         console.error('Error al obtener datos:', error);
                     });
+
+                    $('#codigo').on('keyup', function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#associatesTable tbody tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                        });
+                    });
 					
 						//alert("hola");
                 },
                 computed: {
+                    filteredAssociates: function() {
+                        const query = this.searchQuery.toLowerCase();
+                        return this.associates.filter(function(item) {
+                            return item.associateId.toLowerCase().includes(query) ||
+                                item.associatename.toLowerCase().includes(query);
+                        });
+                    }
                 },
                 watch: {                   
                 },
