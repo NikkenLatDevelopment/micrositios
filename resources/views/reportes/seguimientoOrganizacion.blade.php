@@ -121,86 +121,46 @@
                     },
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
-                            //alert('Opción seleccionada: ' + this.selectedOption);
-                            if(this.selectedOption == "1"){
-                                alert('Opción seleccionada: ' + this.selectedOption);
+                            console.log('Opción seleccionada:', this.selectedOption);
 
-                                var url = '{{ route("seguimientoOrganizacion.get") }}';
-                                axios.post(url, {
-                                    'codigo': this.codigo,      
-                                }).then(response => {                                                        
-                                    if (response.data) {     
-                                        console.log(response.data);
-                                        //this.associates = response.data;
-                                        $('#associatesTable tbody').empty();
-
-                                        var data1 = response.data;
-
-                                        data1.forEach(function(item) {
-                                            var row1 = '<tr>' +
-                                                    '<td>' + item.associateId + '</td>' +
-                                                    '<td>' + item.associatename.trim() + '</td>' +
-                                                    '<td>' + item.tipo + '</td>' +
-                                                    '<td>' + item.rangoSocio + '</td>' +
-                                                    '<td>' + item.sponsorname + '</td>' +
-                                                    '<td style="max-width:100px;">' + item.telefono.trim() + '</td>' +
-                                                    '<td>' + item.email.trim() + '</td>' +                                                    
-                                                    '<td>' + item.semana_1 + '</td>' +
-                                                    '<td>' + item.semana_2 + '</td>' +
-                                                    '<td>' + item.semana_3 + '</td>' +
-                                                    '<td>' + item.semana_4 + '</td>' +
-                                                    '<td>' + item.ganador + '</td>' +
-                                                    '</tr>';
-                                            $('#associatesTable tbody').append(row1);
-                                        });
-
-                                    }
-                                }).catch(error => {
-                                    console.log("ssd");
-                                
-                                });
-                                
-                            }else{
-
-                                var url = '{{ route("seguimientoOrganizacion.getArvol") }}';
-                                axios.post(url, {
-                                    'codigo': this.codigo,                                                                
-
-                                }).then(response => {                                                        
-                                    if (response.data) { 
-                                        console.log("2"); 
-                                        $('#associatesTable tbody').empty();
-
-                                        var data = response.data;                                        
-
-                                        data.forEach(function(item) {
-                                            var row = '<tr>' +
-                                                    '<td>' + item.associateId + '</td>' +
-                                                    '<td>' + item.associatename.trim() + '</td>' +
-                                                    '<td>' + item.tipo + '</td>' +
-                                                    '<td>' + item.rangoSocio + '</td>' +
-                                                    '<td>' + item.sponsorname + '</td>' +
-                                                    '<td style="max-width:100px;">' + item.telefono.trim() + '</td>' +
-                                                    '<td>' + item.email.trim() + '</td>' +                                                    
-                                                    '<td>' + item.semana_1 + '</td>' +
-                                                    '<td>' + item.semana_2 + '</td>' +
-                                                    '<td>' + item.semana_3 + '</td>' +
-                                                    '<td>' + item.semana_4 + '</td>' +
-                                                    '<td>' + item.ganador + '</td>' +
-                                                    '</tr>';
-                                            $('#associatesTable tbody').append(row);
-                                        });                              
-                                    
-                                    }
-                                }).catch(error => {
-                                    console.log("ssd");
-                                
-                                });
-
+                            if (this.selectedOption == "1") {
+                                this.fetchAssociates('{{ route("seguimientoOrganizacion.get") }}');
+                            } else {
+                                this.fetchAssociates('{{ route("seguimientoOrganizacion.getArbol") }}');
                             }
-                            
-                            // Aquí puedes llamar a otra función o realizar alguna acción adicional
                         }
+                    },
+                    fetchAssociates: function(url) {
+                        axios.post(url, {
+                            'codigo': this.codigo
+                        }).then(response => {
+                            if (response.data) {
+                                console.log('Datos recibidos:', response.data);
+                                this.updateTable(response.data);
+                            }
+                        }).catch(error => {
+                            console.error('Error al obtener datos:', error);
+                        });
+                    },
+                    updateTable: function(data) {
+                        $('#associatesTable tbody').empty();
+                        data.forEach(item => {
+                            var row = `<tr>
+                                <td>${item.associateId}</td>
+                                <td>${item.associatename.trim()}</td>
+                                <td>${item.tipo}</td>
+                                <td>${item.rangoSocio}</td>
+                                <td>${item.sponsorname}</td>
+                                <td style="max-width:100px;">${item.telefono.trim()}</td>
+                                <td>${item.email.trim()}</td>
+                                <td>${item.semana_1}</td>
+                                <td>${item.semana_2}</td>
+                                <td>${item.semana_3}</td>
+                                <td>${item.semana_4}</td>
+                                <td>${item.ganador}</td>
+                            </tr>`;
+                            $('#associatesTable tbody').append(row);
+                        });
                     },
                     exportToExcel: function() {
                         /* Obtener los datos de la tabla */
