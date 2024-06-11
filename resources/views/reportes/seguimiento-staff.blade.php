@@ -72,26 +72,16 @@
             
             var register = new Vue({
                 el: '#seguimiento-organizacion',
-                data: {                   
+                data: {      
+                    currentPage: 1,
+                    perPage: 100,
+                    totalPages: 1             
                 },
                 filters: {},
                 beforeMount: function() {                    
                 },
                 mounted: function() {   
-                    var url = '{{ route("seguimiento-staff.get") }}';
-                    axios.post(url, {                        
-                    }).then(response => {
-                        if (response.data) {
-                            $("#cargando").hide();
-                            this.updateTable(response.data);
-                            //console.log('Datos recibidos:', response.data);
-                            //this.updateTable(response.data);
-                        }
-                    }).catch(error => {
-                        $("#error").show();
-                        $("#cargando").hide();
-                        console.error('Error al obtener datos:', error);
-                    });
+                    this.fetchPage(this.currentPage);
 
                     $('#codigo').on('keyup', function() {
                         var value = $(this).val().toLowerCase();
@@ -102,18 +92,28 @@
 					
 						//alert("hola");
                 },
-                computed: {
-                    filteredAssociates: function() {
-                        const query = this.searchQuery.toLowerCase();
-                        return this.associates.filter(function(item) {
-                            return item.associateId.toLowerCase().includes(query) ||
-                                item.associatename.toLowerCase().includes(query);
-                        });
-                    }
+                computed: {                    
                 },
                 watch: {                   
                 },
                 methods: {
+                    fetchPage: function(page) {
+            if (page < 1 || page > this.totalPages) return;
+            this.currentPage = page;
+
+            var url = '{{ route("seguimiento-staff.get") }}';
+            axios.post(url, { page: this.currentPage }).then(response => {
+                if (response.data) {
+                    $("#cargando").hide();
+                    this.updateTable(response.data);
+                    this.totalPages = Math.ceil(response.data.length / this.perPage);
+                }
+            }).catch(error => {
+                $("#error").show();
+                $("#cargando").hide();
+                console.error('Error al obtener datos:', error);
+            });
+        },
                     updateTable: function(data) {
                         $('#associatesTable tbody').empty();
                         data.forEach(item => {
