@@ -148,7 +148,7 @@
                                 
                             }else{
 
-                                var url = '{{ route("seguimiento-organizacion.getArvol") }}';
+                                var url = '{{ route("seguimientoOrganizacion.getArvol") }}';
                                 axios.post(url, {
                                     'codigo': this.codigo,                                                                
 
