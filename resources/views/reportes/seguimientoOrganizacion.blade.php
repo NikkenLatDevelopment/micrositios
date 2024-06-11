@@ -49,7 +49,7 @@
                 <table class="table" id="associatesTable">
                     <thead>
                         <tr>
-                            <th scope="col" style="border: none;">Guardar <i class="fa-solid fa-file-excel"></i></th>                            
+                            <th scope="col" style="border: none;"><button class="btn btn-info" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button></th>                            
                         </tr>
                     </thead>
                     <thead>
@@ -200,6 +200,12 @@
                             
                             // Aquí puedes llamar a otra función o realizar alguna acción adicional
                         }
+                    },
+                    exportToExcel: function() {
+                        /* Obtener los datos de la tabla */
+                        var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
+                        /* Generar el archivo Excel */
+                        XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
                     }
                 }
             });
