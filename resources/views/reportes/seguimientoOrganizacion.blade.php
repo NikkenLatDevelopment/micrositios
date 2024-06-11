@@ -50,7 +50,7 @@
                         <th scope="col">Rango</th>
                         <th scope="col">Patrocinador</th>
                         <th scope="col" style="max-width:100px;">Teléfono</th>
-                        <th scope="col" style="max-width:100px;">Correo</th>
+                        <th scope="col" style="max-width:180px;">Correo</th>
                         <th scope="col">Semana 1</th>
                         <th scope="col">Semana 2</th>
                         <th scope="col">Semana 3</th>
@@ -170,7 +170,7 @@
                                                     '<td>' + item.rangoSocio + '</td>' +
                                                     '<td>' + item.sponsorname + '</td>' +
                                                     '<td style="max-width:100px;">' + item.telefono.trim() + '</td>' +
-                                                    '<td style="max-width:100px;">' + item.email.trim() + '</td>' +                                                    
+                                                    '<td style="max-width:180px;">' + item.email.trim() + '</td>' +                                                    
                                                     '<td>' + item.semana_1 + '</td>' +
                                                     '<td>' + item.semana_2 + '</td>' +
                                                     '<td>' + item.semana_3 + '</td>' +
