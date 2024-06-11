@@ -58,21 +58,7 @@
                         <th scope="col">Cumple 4x4</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr v-for="item in associates" :key="item.associateId">
-                            <td>@{{ item.associateId }}</td>
-                            <td>@{{ item.associatename }}</td>
-                            <td>@{{ item.tipo }}</td>
-                            <td>@{{ item.rangoSocio }}</td>
-                            <td>@{{ item.sponsorname }}</td>
-                            <td>@{{ item.telefono }}</td>
-                            <td>@{{ item.email }}</td>                            
-                            <td>@{{ item.semana_1 }}</td>
-                            <td>@{{ item.semana_2 }}</td>
-                            <td>@{{ item.semana_3 }}</td>
-                            <td>@{{ item.semana_4 }}</td>
-                            <td>@{{ item.ganador }}</td>
-                        </tr>                       
+                    <tbody>                                         
                     </tbody>
                 </table>
                 
@@ -182,9 +168,9 @@
                                                     '<td>' + item.associatename.trim() + '</td>' +
                                                     '<td>' + item.tipo + '</td>' +
                                                     '<td>' + item.rangoSocio + '</td>' +
-                                                    '<td>' + item.telefono.trim() + '</td>' +
-                                                    '<td>' + item.email.trim() + '</td>' +
                                                     '<td>' + item.sponsorname + '</td>' +
+                                                    '<td>' + item.telefono.trim() + '</td>' +
+                                                    '<td>' + item.email.trim() + '</td>' +                                                    
                                                     '<td>' + item.semana_1 + '</td>' +
                                                     '<td>' + item.semana_2 + '</td>' +
                                                     '<td>' + item.semana_3 + '</td>' +
