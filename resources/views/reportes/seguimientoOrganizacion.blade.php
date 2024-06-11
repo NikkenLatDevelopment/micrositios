@@ -17,9 +17,17 @@
             <div class="col-12 py-4">
                 <h1>Seguimiento Organización</h1>
 
-                <form class="d-flex float-end" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <form class="d-flex float-start" role="">
+                        <select id="select" v-model="selectedOption" @change="onSelectChange">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="1">Grupo Personal</option>
+                            <option value="2">Árbol completo</option>
+                        </select>                        
+                </form>
+
+                <form class="d-flex float-end" role="search">                        
+                        <input class="form-control me-2" type="search" placeholder="Ingresa código" v-model="codigo" id="codigo" aria-label="Buscar">
+                        <button class="btn btn-outline-success" type="submit" @click.prevent="consulta()">Buscar</button>
                 </form>
             
 
@@ -81,6 +89,8 @@
             var register = new Vue({
                 el: '#seguimiento-organizacion',
                 data: {
+                    codigo: {!! json_encode($cod) !!},   
+                    selectedOption: ""                 
                 },
                 filters: {},
                 beforeMount: function() {                    
@@ -88,12 +98,59 @@
                 mounted: function() {   
 					
 						//alert("hola");
+
+                    
                 },
                 computed: {
                 },
                 watch: {                   
                 },
                 methods: {
+                    consulta: function(){
+                        //alert("sss");
+                        var selectedValue = $('#select').val();
+                        var url = '{{ route("seguimiento-organizacion.get") }}';
+                            if (selectedValue == 1) {
+                                axios.post(url, {
+                                'codigo': this.codigo,   
+                                'type': "1",                         
+
+                            }).then(response => {                                                        
+                                if (response.data) {                                
+                                   
+                                }
+                            }).catch(error => {
+                                console.log("ssd");
+                            
+                            });
+                            //alert('Por favor, seleccione una opción.');
+                        } else {
+                            //alert("no");
+                        }
+                    },
+                    onSelectChange: function() {
+                        if (this.selectedOption !== "") {
+                            alert('Opción seleccionada: ' + this.selectedOption);
+                            if(this.selectedOption == "1"){
+
+                                var url = '{{ route("seguimiento-organizacion.get") }}';
+                                axios.post(url, {
+                                    'codigo': this.codigo,                                                                
+
+                                }).then(response => {                                                        
+                                    if (response.data) {                                
+                                    
+                                    }
+                                }).catch(error => {
+                                    console.log("ssd");
+                                
+                                });
+                                
+                            }
+                            
+                            // Aquí puedes llamar a otra función o realizar alguna acción adicional
+                        }
+                    }
                 }
             });
         </script>
