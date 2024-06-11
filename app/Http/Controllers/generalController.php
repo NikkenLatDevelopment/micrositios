@@ -75,7 +75,7 @@ try {
     $results = DB::connection('75')->select($query, ['sponsorId' => $request->codigo]);
     dd($results);
 } catch (\Exception $e) {
-    Log::error('SQL Error: ' . $e->getMessage());
+    //Log::error('SQL Error: ' . $e->getMessage());
     dd($e->getMessage());
 }
 
