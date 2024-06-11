@@ -59,6 +59,19 @@
                     <tbody>
                     </tbody>
                 </table>
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item" :class="{'disabled': !pagination.prev_page_url}">
+                            <a class="page-link" href="#" @click.prevent="fetchData(pagination.prev_page_url)">Previous</a>
+                        </li>
+                        <li class="page-item" v-for="page in pagesNumber" :class="{'active': page == pagination.current_page}" :key="page">
+                            <a class="page-link" href="#" @click.prevent="fetchData(pagination.path + '?page=' + page)">@{{ page }}</a>
+                        </li>
+                        <li class="page-item" :class="{'disabled': !pagination.next_page_url}">
+                            <a class="page-link" href="#" @click.prevent="fetchData(pagination.next_page_url)">Next</a>
+                        </li>
+                    </ul>
+                </nav>
                 
             </div>
         </div>
@@ -78,20 +91,7 @@
                 beforeMount: function() {                    
                 },
                 mounted: function() {   
-                    var url = '{{ route("seguimiento-staff.get") }}';
-                    axios.post(url, {                        
-                    }).then(response => {
-                        if (response.data) {
-                            $("#cargando").hide();
-                            this.updateTable(response.data);
-                            //console.log('Datos recibidos:', response.data);
-                            //this.updateTable(response.data);
-                        }
-                    }).catch(error => {
-                        $("#error").show();
-                        $("#cargando").hide();
-                        console.error('Error al obtener datos:', error);
-                    });
+                    this.fetchData('{{ route("seguimiento-staff.get") }}');
 
                     $('#codigo').on('keyup', function() {
                         var value = $(this).val().toLowerCase();
@@ -109,44 +109,71 @@
                             return item.associateId.toLowerCase().includes(query) ||
                                 item.associatename.toLowerCase().includes(query);
                         });
+                    },
+                    pagesNumber: function() {
+                        if (!this.pagination.to) {
+                            return [];
+                        }
+
+                        var from = this.pagination.current_page - 2;
+                        if (from < 1) {
+                            from = 1;
+                        }
+
+                        var to = from + 4;
+                        if (to >= this.pagination.last_page) {
+                            to = this.pagination.last_page;
+                        }
+
+                        var pagesArray = [];
+                        for (var page = from; page <= to; page++) {
+                            pagesArray.push(page);
+                        }
+
+                        return pagesArray;
                     }
                 },
                 watch: {                   
                 },
                 methods: {
-                    updateTable: function(data) {
-                        $('#associatesTable tbody').empty();
-                        data.forEach(item => {
-                            var associateId = item.associateId || item.associateid;
-                            var associatename = item.associatename || item.associateName;
-                            var tipo = item.tipo || '';
-                            var rangoSocio = item.rangoSocio || '';
-                            var sponsorname = item.sponsorname || item.sponsorName;
-                            var telefono = item.telefono ? item.telefono.trim() : '';
-                            var email = item.email ? item.email.trim() : '';
-                            var semana_1 = item.semana_1 || 'NO';
-                            var semana_2 = item.semana_2 || 'NO';
-                            var semana_3 = item.semana_3 || 'NO';
-                            var semana_4 = item.semana_4 || 'NO';
-                            var ganador = item.ganador || 'NO';
-
-                            var row = `<tr>
-                                <td>${associateId}</td>
-                                <td>${associatename}</td>
-                                <td>${tipo}</td>
-                                <td>${rangoSocio}</td>
-                                <td>${sponsorname}</td>
-                                <td style="max-width:100px;">${telefono}</td>
-                                <td>${email}</td>
-                                <td>${semana_1}</td>
-                                <td>${semana_2}</td>
-                                <td>${semana_3}</td>
-                                <td>${semana_4}</td>
-                                <td>${ganador}</td>
-                            </tr>`;
-                            $('#associatesTable tbody').append(row);
+                    fetchData: function(url) {
+                        axios.post(url).then(response => {
+                            $("#cargando").hide();
+                            this.updateTable(response.data.data);
+                            this.pagination = response.data;
+                        }).catch(error => {
+                            $("#error").show();
+                            $("#cargando").hide();
+                            console.error('Error al obtener datos:', error);
                         });
                     },
+                    updateTable: function(data) {
+                this.associates = data;
+                let tbody = $('#associatesTable tbody');
+                tbody.empty();
+                data.forEach(item => {
+                    let row = `<tr>
+                        <td>${item.associateid}</td>
+                        <td>${item.associateName}</td>
+                        <td>${item.tipo}</td>
+                        <td>${item.rangoSocio}</td>
+                        <td>${item.sponsorName}</td>
+                        <td style="max-width:100px;">${item.telefono}</td>
+                        <td>${item.email}</td>
+                        <td>${item.semana_1}</td>
+                        <td>${item.semana_2}</td>
+                        <td>${item.semana_3}</td>
+                        <td>${item.semana_4}</td>
+                        <td>${item.semana_5}</td>
+                        <td>${item.ganador}</td>
+                    </tr>`;
+                    tbody.append(row);
+                });
+            },
+            exportToExcel: function() {
+                var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
+                XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
+            },
                     exportToExcel: function() {
                         /* Obtener los datos de la tabla */
                         var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
