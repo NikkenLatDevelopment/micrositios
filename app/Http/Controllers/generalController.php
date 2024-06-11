@@ -168,14 +168,20 @@ class generalController extends Controller
         //dd($query);
         $results = DB::connection('75')->select($query);
         $s1 = "";
+        $s2 = "";
+        $s3 = "";
+        $s4 = "";
         foreach ($results as $result) {
             $s1 = $result->semana_1;
+            $s2 = $result->semana_2;
+            $s3 = $result->semana_3;
+            $s4 = $result->semana_4;
             // Puedes acceder a otras propiedades de la misma manera
-            echo $s1;
+            //echo $s1;
         }
-        dd($s1);
+        //dd($s1);
 
-        return view('reportes.seguimiento-personal');
+        return view('reportes.seguimiento-personal',compact("s1","s2","s3","s4"));
     }
 
     /**

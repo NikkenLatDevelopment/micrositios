@@ -73,10 +73,10 @@
             var register = new Vue({
                 el: '#seguimiento-personal',
                 data: {
-                   semana1: "",
-                   semana2: "",
-                   semana3: "",
-                   semana4: "",
+                   semana1: {!! json_encode($s1) !!},
+                   semana2: {!! json_encode($s2) !!},
+                   semana3: {!! json_encode($s3) !!},
+                   semana4: {!! json_encode($s4) !!},
                    colo1: "",
                    colo2: "",
                    colo3: "",
