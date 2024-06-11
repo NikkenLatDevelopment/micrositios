@@ -47,12 +47,10 @@
         <div class="row">
             <div class="col-12">
 
-                <table class="table table-striped table-hover" id="associatesTable">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="border: none;"><button class="btn btn-info" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button></th>                            
-                        </tr>
-                    </thead>
+            
+                <button class="btn btn-info mb-3" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button>
+
+                <table class="table table-striped table-hover" id="associatesTable">                    
                     <thead>
                         <tr>
                         <th scope="col">Código</th>
