@@ -149,7 +149,7 @@
                             var associatename = item.associatename || item.associateName;
                             var tipo = item.tipo || '';
                             var rangoSocio = item.rangoSocio || '';
-                            var sponsorname = item.sponsorname || '';
+                            var sponsorname = item.sponsorname || item.sponsorName;
                             var telefono = item.telefono ? item.telefono.trim() : '';
                             var email = item.email ? item.email.trim() : '';
                             var semana_1 = item.semana_1 || 'NO';
