@@ -59,20 +59,6 @@
                     <tbody>
                     </tbody>
                 </table>
-
-                <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
-                    <ul class="pagination">
-                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                            <a class="page-link" href="#" @click.prevent="fetchPage(currentPage - 1)">Anterior</a>
-                        </li>
-                        <li class="page-item" v-for="page in totalPages" :class="{ active: currentPage === page }">
-                            <a class="page-link" href="#" @click.prevent="fetchPage(page)">@{{ page }}</a>
-                        </li>
-                        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                            <a class="page-link" href="#" @click.prevent="fetchPage(currentPage + 1)">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
                 
             </div>
         </div>
@@ -86,16 +72,26 @@
             
             var register = new Vue({
                 el: '#seguimiento-organizacion',
-                data: {      
-                    currentPage: 1,
-                    perPage: 10000,
-                    totalPages: 1             
+                data: {                   
                 },
                 filters: {},
                 beforeMount: function() {                    
                 },
                 mounted: function() {   
-                    this.fetchPage(this.currentPage);
+                    var url = '{{ route("seguimiento-staff.get") }}';
+                    axios.post(url, {                        
+                    }).then(response => {
+                        if (response.data) {
+                            $("#cargando").hide();
+                            this.updateTable(response.data);
+                            //console.log('Datos recibidos:', response.data);
+                            //this.updateTable(response.data);
+                        }
+                    }).catch(error => {
+                        $("#error").show();
+                        $("#cargando").hide();
+                        console.error('Error al obtener datos:', error);
+                    });
 
                     $('#codigo').on('keyup', function() {
                         var value = $(this).val().toLowerCase();
@@ -106,28 +102,18 @@
 					
 						//alert("hola");
                 },
-                computed: {                    
+                computed: {
+                    filteredAssociates: function() {
+                        const query = this.searchQuery.toLowerCase();
+                        return this.associates.filter(function(item) {
+                            return item.associateId.toLowerCase().includes(query) ||
+                                item.associatename.toLowerCase().includes(query);
+                        });
+                    }
                 },
                 watch: {                   
                 },
                 methods: {
-                    fetchPage: function(page) {
-            if (page < 1 || page > this.totalPages) return;
-            this.currentPage = page;
-
-            var url = '{{ route("seguimiento-staff.get") }}';
-            axios.post(url, { page: this.currentPage }).then(response => {
-                if (response.data) {
-                    $("#cargando").hide();
-                    this.updateTable(response.data.data);
-                    this.totalPages = Math.ceil(response.data.total / this.perPage);
-                }
-            }).catch(error => {
-                $("#error").show();
-                $("#cargando").hide();
-                console.error('Error al obtener datos:', error);
-            });
-        },
                     updateTable: function(data) {
                         $('#associatesTable tbody').empty();
                         data.forEach(item => {
