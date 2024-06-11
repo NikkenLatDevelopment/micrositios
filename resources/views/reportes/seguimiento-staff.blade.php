@@ -29,6 +29,15 @@
             <div class="col-12">
 
                 <button class="btn btn-info mb-3" @click="exportToExcel">Exportar a Excel <i class="fa-solid fa-file-excel"></i></button>
+                <div class="w-100 text-center">
+                    <div id="cargando" class="text-success fw-bold fs-4">
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        <span role="status">Cargando datos...</span>
+                    </div>
+                    <div id="error" class="text-danger fw-bold fs-4" style="display:none;">                        
+                        <span role="status">Hubo un problema al extraer la información...</span>
+                    </div>
+                </div>
 
                 <table class="table table-striped table-hover" id="associatesTable">                   
                     <thead>
@@ -49,23 +58,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($results as $val)
-                        <tr>                            
-                            <td scope="row">{{ $val->associateid }}</td>
-                            <td>{{ $val->associateName }}</td>
-                            <td>{{ $val->tipo }}</td>
-                            <td>{{ $val->rangoSocio }}</td>
-                            <td>{{ $val->pais }}</td>
-                            <td>{{ $val->telefono }}</td>
-                            <td>{{ $val->email }}</td>                            
-                            <td>{{ $val->semana_1 }}</td>
-                            <td>{{ $val->semana_2 }}</td>
-                            <td>{{ $val->semana_3 }}</td>
-                            <td>{{ $val->semana_4 }}</td>
-                            <td>{{ $val->semana_5 }}</td>
-                            <td>{{ $val->ganador }}</td>                           
-                        </tr>                   
-                        @endforeach     
                     </tbody>
                 </table>
                 
@@ -81,12 +73,26 @@
             
             var register = new Vue({
                 el: '#seguimiento-organizacion',
-                data: {
+                data: {                   
                 },
                 filters: {},
                 beforeMount: function() {                    
                 },
                 mounted: function() {   
+                    var url = '{{ route("seguimiento-staff.get") }}';
+                    axios.post(url, {                        
+                    }).then(response => {
+                        if (response.data) {
+                            $("#cargando").hide();
+                            this.updateTable(response.data);
+                            //console.log('Datos recibidos:', response.data);
+                            //this.updateTable(response.data);
+                        }
+                    }).catch(error => {
+                        $("#error").show();
+                        $("#cargando").hide();
+                        console.error('Error al obtener datos:', error);
+                    });
 					
 						//alert("hola");
                 },
@@ -95,6 +101,39 @@
                 watch: {                   
                 },
                 methods: {
+                    updateTable: function(data) {
+                        $('#associatesTable tbody').empty();
+                        data.forEach(item => {
+                            var associateId = item.associateId || item.associateid;
+                            var associatename = item.associatename || item.associateName;
+                            var tipo = item.tipo || '';
+                            var rangoSocio = item.rangoSocio || '';
+                            var sponsorname = item.sponsorname || item.sponsorName;
+                            var telefono = item.telefono ? item.telefono.trim() : '';
+                            var email = item.email ? item.email.trim() : '';
+                            var semana_1 = item.semana_1 || 'NO';
+                            var semana_2 = item.semana_2 || 'NO';
+                            var semana_3 = item.semana_3 || 'NO';
+                            var semana_4 = item.semana_4 || 'NO';
+                            var ganador = item.ganador || 'NO';
+
+                            var row = `<tr>
+                                <td>${associateId}</td>
+                                <td>${associatename}</td>
+                                <td>${tipo}</td>
+                                <td>${rangoSocio}</td>
+                                <td>${sponsorname}</td>
+                                <td style="max-width:100px;">${telefono}</td>
+                                <td>${email}</td>
+                                <td>${semana_1}</td>
+                                <td>${semana_2}</td>
+                                <td>${semana_3}</td>
+                                <td>${semana_4}</td>
+                                <td>${ganador}</td>
+                            </tr>`;
+                            $('#associatesTable tbody').append(row);
+                        });
+                    },
                     exportToExcel: function() {
                         /* Obtener los datos de la tabla */
                         var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
