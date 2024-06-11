@@ -1,4 +1,4 @@
-<x-layout-general>
+<x-layoutGeneral>
 @section('title', 'Seguimiento Personal')
 <div id="seguimiento-personal">
     <nav class="navbar bg-body-tertiary nvar">
@@ -180,4 +180,4 @@
         </script>
 @endpush
 
-</x-layout-general>
+</x-layoutGeneral>
