@@ -140,6 +140,7 @@ class generalController extends Controller
 
     public function index_seguimiento_personal($cod)
     {
+        
         $query = "
         SELECT  associateid
 , associateName
@@ -162,9 +163,9 @@ WHEN rangoSocio = 2 THEN 'SUP'
 , CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
 , CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
 FROM dwt_estrategiareto4x4
-WHERE associateid = ".$cod;
+WHERE associateid = ".$cod.";";
         //
-        //dd("ss");
+        //dd($query);
         $results = DB::connection('75')->select($query);
         dd($results);
 
