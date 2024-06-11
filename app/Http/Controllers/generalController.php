@@ -76,6 +76,8 @@ class generalController extends Controller
         $results = DB::connection('75')
                 ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);
 
+        dd($results);
+
         return $results;
         
 
