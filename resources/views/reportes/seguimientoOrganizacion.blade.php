@@ -59,20 +59,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>                            
-                        </tr>                        
+                        <tr v-for="item in associates" :key="item.associateId">
+                            <td>@{{ item.associateId }}</td>
+                            <td>@{{ item.associatename }}</td>
+                            <td>@{{ item.tipo }}</td>
+                            <td>@{{ item.rangoSocio }}</td>
+                            <td>@{{ item.telefono }}</td>
+                            <td>@{{ item.email }}</td>
+                            <td>@{{ item.sponsorname }}</td>
+                            <td>@{{ item.semana_1 }}</td>
+                            <td>@{{ item.semana_2 }}</td>
+                            <td>@{{ item.semana_3 }}</td>
+                            <td>@{{ item.semana_4 }}</td>
+                            <td>@{{ item.ganador }}</td>
+                        </tr>                       
                     </tbody>
                 </table>
                 
@@ -90,7 +90,8 @@
                 el: '#seguimiento-organizacion',
                 data: {
                     codigo: {!! json_encode($cod) !!},   
-                    selectedOption: ""                 
+                    selectedOption: "",
+                    associates: []             
                 },
                 filters: {},
                 beforeMount: function() {                    
@@ -120,7 +121,7 @@
 
                                 }).then(response => {                                                        
                                     if (response.data) {                                
-                                    
+                                        this.associates = response.data;
                                     }
                                 }).catch(error => {
                                     console.log("ssd");
