@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\Exportable;
 
-class SeguimientoStaffExport implements FromCollection
+class SeguimientoStaffExport implements FromQuery, WithHeadings, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
