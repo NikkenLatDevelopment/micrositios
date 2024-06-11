@@ -143,31 +143,32 @@ class generalController extends Controller
         
         $query = "
         SELECT  associateid
-, associateName
-, tipo
-, CASE WHEN rangoSocio = 9 THEN 'DRL'
-WHEN rangoSocio = 8 THEN 'DIA'
-WHEN rangoSocio = 7 THEN 'PLO'
-WHEN rangoSocio = 6 THEN 'ORO'
-WHEN rangoSocio = 5 THEN 'PLA'
-WHEN rangoSocio = 3 THEN 'EXE'
-WHEN rangoSocio = 2 THEN 'SUP'
-  ELSE 'DIR' END AS rangoSocio
-, telefono
-, email
-, sponsorName
-, CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1
-, CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2
-, CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3
-, CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4
-, CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
-, CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
-FROM dwt_estrategiareto4x4
-WHERE associateid = ".$cod.";";
+        , associateName
+        , tipo
+        , CASE WHEN rangoSocio = 9 THEN 'DRL'
+        WHEN rangoSocio = 8 THEN 'DIA'
+        WHEN rangoSocio = 7 THEN 'PLO'
+        WHEN rangoSocio = 6 THEN 'ORO'
+        WHEN rangoSocio = 5 THEN 'PLA'
+        WHEN rangoSocio = 3 THEN 'EXE'
+        WHEN rangoSocio = 2 THEN 'SUP'
+        ELSE 'DIR' END AS rangoSocio
+        , telefono
+        , email
+        , sponsorName
+        , CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1
+        , CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2
+        , CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3
+        , CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4
+        , CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
+        , CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
+        FROM dwt_estrategiareto4x4
+        WHERE associateid = ".$cod.";";
         //
         //dd($query);
         $results = DB::connection('75')->select($query);
-        dd($results);
+        $s1 = $results->semana_1;
+        dd($s1);
 
         return view('reportes.seguimiento-personal');
     }
