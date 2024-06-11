@@ -66,7 +66,7 @@
                             <a class="page-link" href="#" @click.prevent="fetchPage(currentPage - 1)">Anterior</a>
                         </li>
                         <li class="page-item" v-for="page in totalPages" :class="{ active: currentPage === page }">
-                            <a class="page-link" href="#" @click.prevent="fetchPage(page)">{{ page }}</a>
+                            <a class="page-link" href="#" @click.prevent="fetchPage(page)">@{{ page }}</a>
                         </li>
                         <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                             <a class="page-link" href="#" @click.prevent="fetchPage(currentPage + 1)">Siguiente</a>
