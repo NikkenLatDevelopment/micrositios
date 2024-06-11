@@ -145,8 +145,8 @@
                     updateTable: function(data) {
                         $('#associatesTable tbody').empty();
                         data.forEach(item => {
-                            var associateId = item.associateId || '';
-                            var associatename = item.associatename ? item.associatename.trim() : '';
+                            var associateId = item.associateId || item.associateid;
+                            var associatename = item.associatename || item.associateName;
                             var tipo = item.tipo || '';
                             var rangoSocio = item.rangoSocio || '';
                             var sponsorname = item.sponsorname || '';
