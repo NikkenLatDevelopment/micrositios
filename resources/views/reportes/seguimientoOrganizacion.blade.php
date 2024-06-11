@@ -64,9 +64,9 @@
                             <td>@{{ item.associatename }}</td>
                             <td>@{{ item.tipo }}</td>
                             <td>@{{ item.rangoSocio }}</td>
-                            <td>@{{ item.telefono }}</td>
-                            <td>@{{ item.email }}</td>
                             <td>@{{ item.sponsorname }}</td>
+                            <td>@{{ item.telefono }}</td>
+                            <td>@{{ item.email }}</td>                            
                             <td>@{{ item.semana_1 }}</td>
                             <td>@{{ item.semana_2 }}</td>
                             <td>@{{ item.semana_3 }}</td>
