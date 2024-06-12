@@ -196,7 +196,91 @@
                 }
             });
 
-            function getData
+            // function getDatafunction(){
+            //     $("#associatesTable").DataTable({
+            //         searching: false,
+            //         ordering: true,
+            //         paging: true,
+            //         info: true,
+            //         destroy: true,
+            //         columns: [
+            //             { data: 'SignupDate' },
+            //             { data: 'associateid' },
+            //             { data: 'associatename' },
+            //             { data: 'level' },
+            //             {
+            //                 data: 'Distributor_status',
+            //                 "render": function (data, type, row) {
+            //                     if (row.Distributor_status == 'D') {
+            //                         return 'Socio Independiente';
+            //                     }
+            //                     else if (row.Distributor_status == 'C'){
+            //                         return 'Cliente Preferente';
+            //                     }
+            //                     else{
+            //                         return row.Distributor_status;
+            //                     }
+            //                 }
+            //             },
+            //             { data: 'SponsorName' },
+            //             {
+            //                 data: 'PV',
+            //                 "render": function (data, type, row) {
+            //                     if (row.PV == '.00') {
+            //                         return '0.00';
+            //                     }else{
+            //                         return row.PV;
+            //                     }
+            //                 }
+            //             },
+            //             {
+            //                 data: 'GV',
+            //                 "render": function (data, type, row) {
+            //                     if (row.GV == '.00') {
+            //                         return '0.00';
+            //                     }
+            //                     else{
+            //                         return row.GV;
+            //                     }
+            //                 }
+            //             },
+            //             {
+            //                 data: 'OV',
+            //                 "render": function (data, type, row) {
+            //                     if (row.OV == '.00') {
+            //                         return '0.00';
+            //                     }
+            //                     else{
+            //                         return row.OV;
+            //                     }
+            //                 }
+            //             },
+            //             {
+            //                 data: 'QOVOPL',
+            //                 "render": function (data, type, row) {
+            //                     if (row.QOVOPL == '.00') {
+            //                         return '0.00';
+            //                     }
+            //                     else{
+            //                         return row.QOVOPL;
+            //                     }
+            //                 }
+            //             },
+            //             {
+            //                 data: 'QOVOPSL',
+            //                 "render": function (data, type, row) {
+            //                     if (row.QOVOPSL == '.00') {
+            //                         return '0.00';
+            //                     }
+            //                     else{
+            //                         return row.QOVOPSL;
+            //                     }
+            //                 }
+            //             },
+            //         ],
+            //         dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+            //     });
+            // }
             
         </script>
 @endpush
