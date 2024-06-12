@@ -24,8 +24,7 @@
                 </nav>                
 
                 <form class="d-flex float-start py-4" role="">
-                        {{-- <select id="select" v-model="selectedOption" @change="onSelectChange"> --}}
-                        <select id="select" v-model="selectedOption" onchange="getDatafunction(this.value)">
+                        <select id="select" v-model="selectedOption" @change="onSelectChange">
                             <option value="">Seleccione una opción...</option>
                             <option value="1">Grupo Personal</option>
                             <option value="2">Árbol completo</option>
@@ -76,13 +75,10 @@
         </div>
 
     </div>
+
 </div>
 
 @push('scripts')
-
-        <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
-
-        <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
         <script>
             
             var register = new Vue({
@@ -120,8 +116,8 @@
                 methods: {                    
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
-                            // console.log('Opción seleccionada:', this.selectedOption);
-                            $('#associatesTable tbody').empty();
+                            //console.log('Opción seleccionada:', this.selectedOption);
+
                             if (this.selectedOption == "1") {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.get") }}');
                             } else {
@@ -136,7 +132,6 @@
                             if (response.data) {
                                 //console.log('Datos recibidos:', response.data);
                                 this.updateTable(response.data);
-                                this.getDatatable();
                             }
                         }).catch(error => {
                             console.error('Error al obtener datos:', error);
@@ -180,50 +175,9 @@
                         var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
                         /* Generar el archivo Excel */
                         XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
-                    },
-                    getDatatable: function(){
-                            setTimeout(() => {
-                            $("#associatesTable").DataTable({
-                                searching: false,
-                                ordering: true,
-                                paging: true,
-                                info: true,
-                                destroy: true,
-                                dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
-                            });
-                        }, 2000);
                     }
                 }
             });
-
-            function getDatafunction(type){
-                $("#associatesTable").DataTable({
-                    searching: false,
-                    ordering: true,
-                    paging: true,
-                    info: true,
-                    destroy: true,
-                    ajax: "/seguimientoOrganizacionGen?sap_code=" + $("#cod").val() + "&type=" + type,
-                    deferRender: true,
-                    columns: [
-                        { data: 'associateId' },
-                        { data: 'associatename' },
-                        { data: 'tipo' },
-                        { data: 'rangoSocio' },
-                        { data: 'telefono' },
-                        { data: 'email' },
-                        { data: 'semana_1' },
-                        { data: 'semana_2' },
-                        { data: 'semana_2' },
-                        { data: 'semana_3' },
-                        { data: 'semana_4' },
-                        { data: 'ganador' },
-                        
-                    ],
-                    dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
-                });
-            }
-            
         </script>
 @endpush
 

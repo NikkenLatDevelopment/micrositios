@@ -19,38 +19,80 @@ class generalController extends Controller
         //
         //dd("ss");
         $decodedCod = base64_decode($cod);
-        $cod = base64_decode($cod);
-        // return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
-        return view('reportes.seguimientoOrganizacion', compact('decodedCod', 'cod'));
+        return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
     }
 
 
     public function get_seguimiento_organizacion_personal(Request $request){
+        //$decodedCod = base64_decode($request->codigo);
+        //dd($request->codigo);
+        // $query = "
+        //     SELECT associateid, associateName, tipo,
+        //         CASE WHEN rangoSocio = 9 THEN 'DRL'
+        //             WHEN rangoSocio = 8 THEN 'DIA'
+        //             WHEN rangoSocio = 7 THEN 'PLO'
+        //             WHEN rangoSocio = 6 THEN 'ORO'
+        //             WHEN rangoSocio = 5 THEN 'PLA'
+        //             WHEN rangoSocio = 3 THEN 'EXE'
+        //             WHEN rangoSocio = 2 THEN 'SUP'
+        //             ELSE 'DIR' END AS rangoSocio,
+        //         telefono, email, sponsorName,
+        //         CASE WHEN semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
+        //         CASE WHEN semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
+        //         CASE WHEN semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
+        //         CASE WHEN semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
+        //         CASE WHEN semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
+        //         CASE WHEN ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
+        //     FROM dwt_estrategiareto4x4
+        //     WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
 
-        $sap_code = $request->sap_code;
-        $query = "EXEC grupoPersonal4x4 $sap_code";
-        $results['data'] = DB::connection('75')->select($query);
-        return $results;
+        //     UNION
+
+        //     SELECT a.associateid, a.associateName, a.tipo,
+        //         CASE WHEN a.rangoSocio = 9 THEN 'DRL'
+        //             WHEN a.rangoSocio = 8 THEN 'DIA'
+        //             WHEN a.rangoSocio = 7 THEN 'PLO'
+        //             WHEN a.rangoSocio = 6 THEN 'ORO'
+        //             WHEN a.rangoSocio = 5 THEN 'PLA'
+        //             WHEN a.rangoSocio = 3 THEN 'EXE'
+        //             WHEN a.rangoSocio = 2 THEN 'SUP'
+        //             ELSE 'DIR' END AS rangoSocio,
+        //         a.telefono, a.email, a.sponsorName,
+        //         CASE WHEN a.semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
+        //         CASE WHEN a.semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
+        //         CASE WHEN a.semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
+        //         CASE WHEN a.semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
+        //         CASE WHEN a.semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
+        //         CASE WHEN a.ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
+        //     FROM dwt_estrategiareto4x4 a
+        //     INNER JOIN (
+        //         SELECT associateid 
+        //         FROM dwt_estrategiareto4x4 
+        //         WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
+        //     ) b ON a.sponsorid = b.associateid
+        //     ORDER BY associateName ASC
+        // ";
+
+        $query = "EXEC grupoPersonal4x4 " . $request->codigo;
+
+        //dd($query);
+
+        try {
+            $results = DB::connection('75')->select($query);
+            //dd($results);
+            return $results;
+        } catch (\Exception $e) {
+            //Log::error('SQL Error: ' . $e->getMessage());
+            dd($e->getMessage());
+        }
+
+        
     }
 
     public function get_seguimiento_organizacion_arbol_completo(Request $request){
-        $sap_code = $request->sap_code;
-        $results['data'] = DB::connection('75')->select("EXEC detalle_organizacional4x4 $sap_code");
+        $results = DB::connection('75')
+                ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);
         return $results;
-    }
-
-    public function seguimientoOrganizacionGen(Request $request){
-        $sap_code = $request->sap_code;
-        $type = $request->type;
-        if(intval($type) == 1){
-            $query = "EXEC grupoPersonal4x4 $sap_code";
-            $results['data'] = DB::connection('75')->select($query);
-            return $results;
-        }
-        else{
-            $results['data'] = DB::connection('75')->select("EXEC detalle_organizacional4x4 $sap_code");
-            return $results;
-        }
     }
 
 
