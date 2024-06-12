@@ -187,14 +187,16 @@
                                 searching: false,
                                 ordering: true,
                                 paging: true,
-                                info: false,
+                                info: true,
                                 destroy: true,
                                 dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
                             });
-                        }, 5000);
+                        }, 2000);
                     }
                 }
             });
+
+            function getData
             
         </script>
 @endpush
