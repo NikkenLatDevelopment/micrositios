@@ -76,13 +76,13 @@
         </div>
 
     </div>
-    <input type="text" id="sap_code" val="{{ $cod }}">
 </div>
 
 @push('scripts')
 
         <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
 
+        <input type="text" id="sap_code" val="{{ $decodedCod }}">
         <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
         <script>
             
