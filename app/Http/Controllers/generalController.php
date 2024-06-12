@@ -19,8 +19,9 @@ class generalController extends Controller
         //
         //dd("ss");
         $decodedCod = base64_decode($cod);
+        $cod = base64_decode($cod);
         // return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
-        return view('reportes.seguimientoOrganizacion', compact('decodedCod'));
+        return view('reportes.seguimientoOrganizacion', compact('decodedCod', 'cod'));
     }
 
 
