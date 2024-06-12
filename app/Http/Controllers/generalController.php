@@ -26,52 +26,55 @@ class generalController extends Controller
     public function get_seguimiento_organizacion_personal(Request $request){
         //$decodedCod = base64_decode($request->codigo);
         //dd($request->codigo);
-        $query = "
-            SELECT associateid, associateName, tipo,
-                CASE WHEN rangoSocio = 9 THEN 'DRL'
-                    WHEN rangoSocio = 8 THEN 'DIA'
-                    WHEN rangoSocio = 7 THEN 'PLO'
-                    WHEN rangoSocio = 6 THEN 'ORO'
-                    WHEN rangoSocio = 5 THEN 'PLA'
-                    WHEN rangoSocio = 3 THEN 'EXE'
-                    WHEN rangoSocio = 2 THEN 'SUP'
-                    ELSE 'DIR' END AS rangoSocio,
-                telefono, email, sponsorName,
-                CASE WHEN semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
-                CASE WHEN semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
-                CASE WHEN semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
-                CASE WHEN semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
-                CASE WHEN semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
-                CASE WHEN ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
-            FROM dwt_estrategiareto4x4
-            WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
+        // $query = "
+        //     SELECT associateid, associateName, tipo,
+        //         CASE WHEN rangoSocio = 9 THEN 'DRL'
+        //             WHEN rangoSocio = 8 THEN 'DIA'
+        //             WHEN rangoSocio = 7 THEN 'PLO'
+        //             WHEN rangoSocio = 6 THEN 'ORO'
+        //             WHEN rangoSocio = 5 THEN 'PLA'
+        //             WHEN rangoSocio = 3 THEN 'EXE'
+        //             WHEN rangoSocio = 2 THEN 'SUP'
+        //             ELSE 'DIR' END AS rangoSocio,
+        //         telefono, email, sponsorName,
+        //         CASE WHEN semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
+        //         CASE WHEN semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
+        //         CASE WHEN semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
+        //         CASE WHEN semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
+        //         CASE WHEN semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
+        //         CASE WHEN ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
+        //     FROM dwt_estrategiareto4x4
+        //     WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
 
-            UNION
+        //     UNION
 
-            SELECT a.associateid, a.associateName, a.tipo,
-                CASE WHEN a.rangoSocio = 9 THEN 'DRL'
-                    WHEN a.rangoSocio = 8 THEN 'DIA'
-                    WHEN a.rangoSocio = 7 THEN 'PLO'
-                    WHEN a.rangoSocio = 6 THEN 'ORO'
-                    WHEN a.rangoSocio = 5 THEN 'PLA'
-                    WHEN a.rangoSocio = 3 THEN 'EXE'
-                    WHEN a.rangoSocio = 2 THEN 'SUP'
-                    ELSE 'DIR' END AS rangoSocio,
-                a.telefono, a.email, a.sponsorName,
-                CASE WHEN a.semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
-                CASE WHEN a.semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
-                CASE WHEN a.semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
-                CASE WHEN a.semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
-                CASE WHEN a.semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
-                CASE WHEN a.ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
-            FROM dwt_estrategiareto4x4 a
-            INNER JOIN (
-                SELECT associateid 
-                FROM dwt_estrategiareto4x4 
-                WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
-            ) b ON a.sponsorid = b.associateid
-            ORDER BY associateName ASC
-        ";
+        //     SELECT a.associateid, a.associateName, a.tipo,
+        //         CASE WHEN a.rangoSocio = 9 THEN 'DRL'
+        //             WHEN a.rangoSocio = 8 THEN 'DIA'
+        //             WHEN a.rangoSocio = 7 THEN 'PLO'
+        //             WHEN a.rangoSocio = 6 THEN 'ORO'
+        //             WHEN a.rangoSocio = 5 THEN 'PLA'
+        //             WHEN a.rangoSocio = 3 THEN 'EXE'
+        //             WHEN a.rangoSocio = 2 THEN 'SUP'
+        //             ELSE 'DIR' END AS rangoSocio,
+        //         a.telefono, a.email, a.sponsorName,
+        //         CASE WHEN a.semana_1 = 1 THEN 'SI' ELSE 'NO' END AS semana_1,
+        //         CASE WHEN a.semana_2 = 1 THEN 'SI' ELSE 'NO' END AS semana_2,
+        //         CASE WHEN a.semana_3 = 1 THEN 'SI' ELSE 'NO' END AS semana_3,
+        //         CASE WHEN a.semana_4 = 1 THEN 'SI' ELSE 'NO' END AS semana_4,
+        //         CASE WHEN a.semana_5 = 1 THEN 'SI' ELSE 'NO' END AS semana_5,
+        //         CASE WHEN a.ganador = 1 THEN 'SI' ELSE 'NO' END AS ganador
+        //     FROM dwt_estrategiareto4x4 a
+        //     INNER JOIN (
+        //         SELECT associateid 
+        //         FROM dwt_estrategiareto4x4 
+        //         WHERE sponsorid = ".$request->codigo." AND rangoSocio <= 3
+        //     ) b ON a.sponsorid = b.associateid
+        //     ORDER BY associateName ASC
+        // ";
+
+        $query = "EXEC grupoPersonal4x4 " . $request->codigo;
+
         //dd($query);
 
         try {
@@ -87,13 +90,9 @@ class generalController extends Controller
     }
 
     public function get_seguimiento_organizacion_arbol_completo(Request $request){
-
         $results = DB::connection('75')
-                ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);        
-
+                ->select('EXEC detalle_organizacional4x4 :sponsorId', ['sponsorId' => $request->codigo]);
         return $results;
-        
-
     }
 
 
@@ -105,49 +104,47 @@ class generalController extends Controller
     {
         
         $query = "
-        SELECT 
-        associateid,
-        associateName,
-        tipo,
-        CASE WHEN rangoSocio = 9 THEN 'DRL'
-             WHEN rangoSocio = 8 THEN 'DIA'
-             WHEN rangoSocio = 7 THEN 'PLO'
-             WHEN rangoSocio = 6 THEN 'ORO'
-             WHEN rangoSocio = 5 THEN 'PLA'
-             WHEN rangoSocio = 3 THEN 'EXE'
-             WHEN rangoSocio = 2 THEN 'SUP'
-        ELSE 'DIR' END AS rangoSocio,
-        pais,
-        telefono,
-        email,
-        sponsorid, 
-        sponsorName,
-        CASE WHEN rangoSponsor = 9 THEN 'DRL'
-             WHEN rangoSponsor = 8 THEN 'DIA'
-             WHEN rangoSponsor = 7 THEN 'PLO'
-             WHEN rangoSponsor = 6 THEN 'ORO'
-             WHEN rangoSponsor = 5 THEN 'PLA'
-             WHEN rangoSponsor = 3 THEN 'EXE'
-             WHEN rangoSponsor = 2 THEN 'SUP'
-        ELSE 'DIR' END AS rangoSponsor,
-        CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1,
-        CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2,
-        CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3,
-        CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4,
-        CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5,
-        CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
-FROM dwt_estrategiareto4x4
-WHERE semana_1 = 1
-OR semana_2 = 1
-OR semana_3 = 1
-OR semana_4 = 1
-OR semana_5 = 1
-OR ganador = 1";
+            SELECT 
+                associateid,
+                associateName,
+                tipo,
+                CASE WHEN rangoSocio = 9 THEN 'DRL'
+                    WHEN rangoSocio = 8 THEN 'DIA'
+                    WHEN rangoSocio = 7 THEN 'PLO'
+                    WHEN rangoSocio = 6 THEN 'ORO'
+                    WHEN rangoSocio = 5 THEN 'PLA'
+                    WHEN rangoSocio = 3 THEN 'EXE'
+                    WHEN rangoSocio = 2 THEN 'SUP'
+                ELSE 'DIR' END AS rangoSocio,
+                pais,
+                telefono,
+                email,
+                sponsorid, 
+                sponsorName,
+                CASE WHEN rangoSponsor = 9 THEN 'DRL'
+                    WHEN rangoSponsor = 8 THEN 'DIA'
+                    WHEN rangoSponsor = 7 THEN 'PLO'
+                    WHEN rangoSponsor = 6 THEN 'ORO'
+                    WHEN rangoSponsor = 5 THEN 'PLA'
+                    WHEN rangoSponsor = 3 THEN 'EXE'
+                    WHEN rangoSponsor = 2 THEN 'SUP'
+                ELSE 'DIR' END AS rangoSponsor,
+                CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1,
+                CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2,
+                CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3,
+                CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4,
+                CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5,
+                CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
+            FROM dwt_estrategiareto4x4
+            WHERE semana_1 = 1
+            OR semana_2 = 1
+            OR semana_3 = 1
+            OR semana_4 = 1
+            OR semana_5 = 1
+            OR ganador = 1";
         
-    $results = DB::connection('75')->select($query);
-    
-    
-    return $results;
+        $results = DB::connection('75')->select($query);
+        return $results;
     }
 
     public function index_seguimiento_personal($cod)
@@ -155,30 +152,33 @@ OR ganador = 1";
 
         $decodedCod = base64_decode($cod);
         
-        $query = "
-        SELECT  associateid
-        , associateName
-        , tipo
-        , CASE WHEN rangoSocio = 9 THEN 'DRL'
-        WHEN rangoSocio = 8 THEN 'DIA'
-        WHEN rangoSocio = 7 THEN 'PLO'
-        WHEN rangoSocio = 6 THEN 'ORO'
-        WHEN rangoSocio = 5 THEN 'PLA'
-        WHEN rangoSocio = 3 THEN 'EXE'
-        WHEN rangoSocio = 2 THEN 'SUP'
-        ELSE 'DIR' END AS rangoSocio
-        , telefono
-        , email
-        , sponsorName
-        , CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1
-        , CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2
-        , CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3
-        , CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4
-        , CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
-        , CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
-        FROM dwt_estrategiareto4x4
-        WHERE associateid = ".$decodedCod.";";
-        //
+        // $query = "
+        //     SELECT  associateid
+        //         , associateName
+        //         , tipo
+        //         , CASE WHEN rangoSocio = 9 THEN 'DRL'
+        //         WHEN rangoSocio = 8 THEN 'DIA'
+        //         WHEN rangoSocio = 7 THEN 'PLO'
+        //         WHEN rangoSocio = 6 THEN 'ORO'
+        //         WHEN rangoSocio = 5 THEN 'PLA'
+        //         WHEN rangoSocio = 3 THEN 'EXE'
+        //         WHEN rangoSocio = 2 THEN 'SUP'
+        //         ELSE 'DIR' END AS rangoSocio
+        //         , telefono
+        //         , email
+        //         , sponsorName
+        //         , CASE WHEN semana_1= 1 THEN 'SI' ELSE 'NO' END AS semana_1
+        //         , CASE WHEN semana_2= 1 THEN 'SI' ELSE 'NO' END AS semana_2
+        //         , CASE WHEN semana_3= 1 THEN 'SI' ELSE 'NO' END AS semana_3
+        //         , CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4
+        //         , CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
+        //         , CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
+        //     FROM dwt_estrategiareto4x4
+        //     WHERE associateid = ".$decodedCod.";";
+        
+        $query = "EXEC consultaSocio4x4 $decodedCod";
+
+
         //dd($query);
         $results = DB::connection('75')->select($query);
         $s1 = "";
