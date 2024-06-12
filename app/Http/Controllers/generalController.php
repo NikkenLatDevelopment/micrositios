@@ -14,12 +14,12 @@ class generalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_seguimiento_organizacion($cod)
-    {
-        //
-        //dd("ss");
-        $decodedCod = base64_decode($cod);
-        return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
+    public function index_seguimiento_organizacion($cod){
+        $sap_code = base64_decode(request()->cod);
+        return view('reportes.genReport', compact("sap_code"));
+        
+        // $decodedCod = base64_decode($cod);
+        // return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
     }
 
 
