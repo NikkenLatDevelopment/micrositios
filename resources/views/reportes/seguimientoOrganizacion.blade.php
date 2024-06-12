@@ -180,9 +180,9 @@
                         /* Generar el archivo Excel */
                         XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
                     }
-                    $("#associatesTable").DataTable();
                 }
             });
+            $("#associatesTable").DataTable();
 
         </script>
 @endpush
