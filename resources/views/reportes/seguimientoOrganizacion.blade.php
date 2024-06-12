@@ -178,6 +178,8 @@
                     }
                 }
             });
+
+            DataTable('#associatesTable');
         </script>
 @endpush
 
