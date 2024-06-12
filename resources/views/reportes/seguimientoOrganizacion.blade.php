@@ -172,14 +172,14 @@
                                 <td>${ganador}</td>
                             </tr>`;
                             $('#associatesTable tbody').append(row);
-                            $("#associatesTable").DataTable({
-                                searching: false,
-                                ordering: false,
-                                paging: false,
-                                info: true,
-                                destroy: true,
-                                deferRender: true,
-                            });
+                        });
+                        $("#associatesTable").DataTable({
+                            searching: false,
+                            ordering: false,
+                            paging: false,
+                            info: true,
+                            destroy: true,
+                            deferRender: true,
                         });
                     },
                     exportToExcel: function() {
