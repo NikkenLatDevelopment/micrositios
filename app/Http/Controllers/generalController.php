@@ -136,19 +136,18 @@ class generalController extends Controller
         CASE WHEN semana_4= 1 THEN 'SI' ELSE 'NO' END AS semana_4,
         CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5,
         CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
-        FROM dwt_estrategiareto4x4";
+FROM dwt_estrategiareto4x4
+WHERE semana_1 = 1
+OR semana_2 = 1
+OR semana_3 = 1
+OR semana_4 = 1
+OR semana_5 = 1
+OR ganador = 1";
         
     $results = DB::connection('75')->select($query);
     
-    $currentPage = LengthAwarePaginator::resolveCurrentPage();
-    $perPage = 20;
-    $currentItems = array_slice($results, ($currentPage - 1) * $perPage, $perPage);
-
-    $paginatedResults = new LengthAwarePaginator($currentItems, count($results), $perPage, $currentPage, [
-        'path' => LengthAwarePaginator::resolveCurrentPath()
-    ]);
-
-    return $paginatedResults;
+    
+    return $results;
     }
 
     public function index_seguimiento_personal($cod)
