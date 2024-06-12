@@ -182,17 +182,16 @@
                         XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
                     },
                     getDatatable: function(){
-                        setTimeout(() => {
+                            setTimeout(() => {
                             $("#associatesTable").DataTable({
                                 searching: false,
                                 ordering: true,
                                 paging: true,
-                                info: true,
+                                info: false,
                                 destroy: true,
-                                deferRender: true,
                                 dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
                             });
-                        }, 2000);            
+                        }, 5000);
                     }
                 }
             });
