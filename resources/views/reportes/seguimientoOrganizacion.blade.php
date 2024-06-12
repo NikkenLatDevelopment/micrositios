@@ -120,7 +120,7 @@
                 methods: {                    
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
-                            //console.log('Opción seleccionada:', this.selectedOption);
+                            // console.log('Opción seleccionada:', this.selectedOption);
 
                             if (this.selectedOption == "1") {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.get") }}');
@@ -185,7 +185,7 @@
                         setTimeout(() => {
                             $("#associatesTable").DataTable({
                                 searching: false,
-                                ordering: false,
+                                ordering: true,
                                 paging: true,
                                 info: true,
                                 destroy: true,
