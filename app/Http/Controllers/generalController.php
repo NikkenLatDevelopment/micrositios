@@ -22,7 +22,6 @@ class generalController extends Controller
         // return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
     }
 
-
     public function get_seguimiento_organizacion_personal(Request $request){
         //$decodedCod = base64_decode($request->codigo);
         //dd($request->codigo);
@@ -206,17 +205,74 @@ class generalController extends Controller
     public function seguimientoOrganizacionGen(){
         $sap_code = request()->sap_code;
         $type = request()->type;
+        $rank = request()->rank;
+        $finalData = [];
+
         if(intval($type) === 1){
             $conection = \DB::connection('75');
-                $data['data'] = $conection->select("EXEC grupoPersonal4x4 $sap_code");
+                $data = $conection->select("EXEC grupoPersonal4x4 $sap_code");
             \DB::disconnect('75');
-            return $data;
         }
         else{
             $conection = \DB::connection('75');
-                $data['data'] = $conection->select("EXEC detalle_organizacional4x4 $sap_code");
+                $data = $conection->select("EXEC detalle_organizacional4x4 $sap_code");
             \DB::disconnect('75');
-            return $data;
         }
+
+        $ordersArray = json_decode(json_encode($data), true);
+        $resultadosFiltrados = [];
+
+        foreach ($ordersArray as $elemento) {
+            switch(intval($rank)){
+                case 0:
+                    $resultadosFiltrados[] = $elemento;
+                    break;
+                case 1:
+                    if (trim($elemento['rangoSocio']) === 'DIR') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 2:
+                    if (trim($elemento['rangoSocio']) === 'SUP') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 3:
+                    if (trim($elemento['rangoSocio']) === 'EXE') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 4:
+                    if (trim($elemento['rangoSocio']) === 'PLA') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 5:
+                    if (trim($elemento['rangoSocio']) === 'ORO') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 6:
+                    if (trim($elemento['rangoSocio']) === 'PLO') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 7:
+                    if (trim($elemento['rangoSocio']) === 'DIA') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+                case 8:
+                    if (trim($elemento['rangoSocio']) === 'DRL') {
+                        $resultadosFiltrados[] = $elemento;
+                    }
+                    break;
+            }
+        }
+
+        $finalData = [
+            'data' => $resultadosFiltrados,
+        ];
+        return \Response::json($finalData);
     }
 }

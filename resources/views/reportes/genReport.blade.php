@@ -24,24 +24,46 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 py-4">
+                <div class="col-4 py-4 m-auto">
                     <nav class="navbar bg-body-tertiary">
                         <div class="container-fliud">
-                            <a class="navbar-brand" href="#">
-                            <img src="https://micrositios.nikkenlatam.com/images/LOG.png" alt="Bootstrap" width="200">
-                            </a>
+                            <center>
+                                <a class="navbar-brand" href="javascript:void(0)">
+                                    <img src="https://micrositios.nikkenlatam.com/images/LOG.png" alt="Bootstrap" width="35%">
+                                </a>
+                            </center>
                         </div>
                     </nav>
-                    <form class="d-flex float-start py-4" role="">
-                        <select id="select" v-model="selectedOption" onchange="getGenTable(this.value)">
-                            <option value="" disabled selected>Seleccione una opción...</option>
-                            <option value="1">Grupo Personal</option>
-                            <option value="2">Árbol completo</option>
-                        </select>                        
-                    </form>
-                    {{-- <form class="d-flex float-end py-4" role="search">                        
-                        <input class="form-control me-2" type="search" placeholder="Ingresa tu búsqueda" id="codigo" aria-label="Buscar">
-                    </form> --}}
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="w-100 text-center">Tipo de red:</h5>
+                            <select id="select" v-model="selectedOption" class="form-control w-100 mt-2">
+                                <option value="" disabled selected>Seleccione una genealogía...</option>
+                                <option value="1">Grupo Personal</option>
+                                <option value="2">Árbol completo</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="w-100 text-center">Rango</h5>
+                            <select id="selectRank" v-model="selectedOption" class="form-control w-100 mt-2">
+                                <option value="0" selected>Todos los rangos</option>
+                                <option value="1">Directo</option>
+                                <option value="2">Superior</option>
+                                <option value="3">Ejecutivo</option>
+                                <option value="4">Plata</option>
+                                <option value="5">Oro</option>
+                                <option value="6">Platino</option>
+                                <option value="7">Diamante</option>
+                                <option value="8">Diamante Real</option>
+                            </select>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-info btn-rounded br-25 mr-2 mt-2 w-75" onclick="getGenTable()">
+                                Generar Reporte
+                                <i class="ri-slideshow-line"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>            
             </div>
         </div>
@@ -94,7 +116,10 @@
     <script>
 
         $("#select").val('');
-        function getGenTable(type){
+        $("#selectRank").val('0');
+        function getGenTable(){
+            type = $("#select").val();
+            rank = $("#selectRank").val();
             sap_code = $("#sap_code").val();
             $("#associatesTable").DataTable({
                 searching: true,
@@ -102,17 +127,17 @@
                 paging: true,
                 info: true,
                 destroy: true,
-                ajax: "/seguimientoOrganizacionGen?sap_code=" + sap_code + "&type=" + type,
+                ajax: "/seguimientoOrganizacionGen?sap_code=" + sap_code + "&type=" + type + "&rank=" + rank,
                 deferRender: true,
                 columns: [
                     { data: 'associateid' },
                     { data: 'associateName' },
                     { data: 'tipo' },
                     { data: 'rangoSocio' },
+                    { data: 'sponsorName' },
                     { data: 'telefono' },
                     { data: 'email' },
                     { data: 'semana_1' },
-                    { data: 'semana_2' },
                     { data: 'semana_2' },
                     { data: 'semana_3' },
                     { data: 'semana_4' },
