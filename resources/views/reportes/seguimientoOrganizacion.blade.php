@@ -127,7 +127,6 @@
                             } else {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.getArbol") }}');
                             }
-                            this.getDatatable();
                         }
                     },
                     fetchAssociates: function(url) {
@@ -137,6 +136,7 @@
                             if (response.data) {
                                 //console.log('Datos recibidos:', response.data);
                                 this.updateTable(response.data);
+                                this.getDatatable();
                             }
                         }).catch(error => {
                             console.error('Error al obtener datos:', error);
