@@ -182,7 +182,14 @@
                     }
                 }
             });
-            $("#associatesTable").DataTable();
+            $("#associatesTable").DataTable({
+                searching: false,
+                ordering: false,
+                paging: true,
+                info: true,
+                destroy: true,
+                deferRender: true,
+            });
 
         </script>
 @endpush
