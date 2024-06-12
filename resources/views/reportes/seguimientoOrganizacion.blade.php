@@ -173,14 +173,6 @@
                             </tr>`;
                             $('#associatesTable tbody').append(row);
                         });
-                        $("#associatesTable").DataTable({
-                            searching: false,
-                            ordering: false,
-                            paging: false,
-                            info: true,
-                            destroy: true,
-                            deferRender: true,
-                        });
                     },
                     exportToExcel: function() {
                         /* Obtener los datos de la tabla */
@@ -190,7 +182,17 @@
                     }
                 }
             });
-
+            setTimeout(() => {
+                $("#associatesTable").DataTable({
+                    searching: false,
+                    ordering: false,
+                    paging: false,
+                    info: true,
+                    destroy: true,
+                    deferRender: true,
+                    dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+                });
+            }, 2000);
         </script>
 @endpush
 
