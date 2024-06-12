@@ -127,6 +127,7 @@
                             } else {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.getArbol") }}');
                             }
+                            this.getDatatable();
                         }
                     },
                     fetchAssociates: function(url) {
@@ -179,20 +180,23 @@
                         var wb = XLSX.utils.table_to_book(document.getElementById('associatesTable'), { sheet: "Sheet JS" });
                         /* Generar el archivo Excel */
                         XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
+                    },
+                    getDatatable: function(){
+                        setTimeout(() => {
+                            $("#associatesTable").DataTable({
+                                searching: false,
+                                ordering: false,
+                                paging: false,
+                                info: true,
+                                destroy: true,
+                                deferRender: true,
+                                dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+                            });
+                        }, 2000);            
                     }
                 }
             });
-            setTimeout(() => {
-                $("#associatesTable").DataTable({
-                    searching: false,
-                    ordering: false,
-                    paging: false,
-                    info: true,
-                    destroy: true,
-                    deferRender: true,
-                    dom: '<"row"<"col s12 m12 l12 xl12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
-                });
-            }, 2000);
+            
         </script>
 @endpush
 
