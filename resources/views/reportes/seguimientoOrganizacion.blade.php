@@ -204,7 +204,7 @@
                     paging: true,
                     info: true,
                     destroy: true,
-                    ajax: "seguimientoOrganizacionGen?sap_code=" + $("#cod").val() + "&type=" + type,
+                    ajax: "/seguimientoOrganizacionGen?sap_code=" + $("#cod").val() + "&type=" + type,
                     deferRender: true,
                     columns: [
                         { data: 'associateId' },
