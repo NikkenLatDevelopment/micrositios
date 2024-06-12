@@ -39,9 +39,9 @@
                             <option value="2">Árbol completo</option>
                         </select>                        
                     </form>
-                    <form class="d-flex float-end py-4" role="search">                        
+                    {{-- <form class="d-flex float-end py-4" role="search">                        
                         <input class="form-control me-2" type="search" placeholder="Ingresa tu búsqueda" id="codigo" aria-label="Buscar">
-                    </form>
+                    </form> --}}
                 </div>            
             </div>
         </div>
@@ -97,7 +97,7 @@
         function getGenTable(type){
             sap_code = $("#sap_code").val();
             $("#associatesTable").DataTable({
-                searching: false,
+                searching: true,
                 ordering: true,
                 paging: true,
                 info: true,
