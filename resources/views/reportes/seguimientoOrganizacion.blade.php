@@ -121,7 +121,7 @@
                     onSelectChange: function() {
                         if (this.selectedOption !== "") {
                             // console.log('Opción seleccionada:', this.selectedOption);
-
+                            $('#associatesTable tbody').empty();
                             if (this.selectedOption == "1") {
                                 this.fetchAssociates('{{ route("seguimientoOrganizacion.get") }}');
                             } else {
