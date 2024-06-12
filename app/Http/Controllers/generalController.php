@@ -198,10 +198,25 @@ class generalController extends Controller
         return view('reportes.seguimiento-personal',compact("s1","s2","s3","s4"));
     }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
+    public function reportGen(){
+        $sap_code = base64_decode(request()->cod);
+        return view('reportes.genReport', compact("sap_code"));
+    }
+
+    public function seguimientoOrganizacionGen(){
+        $sap_code = request()->sap_code;
+        $type = request()->type;
+        if(intval($type) === 1){
+            $conection = \DB::connection('75');
+                $data['data'] = $conection->select("EXEC grupoPersonal4x4 $sap_code");
+            \DB::disconnect('75');
+            return $data;
+        }
+        else{
+            $conection = \DB::connection('75');
+                $data['data'] = $conection->select("EXEC detalle_organizacional4x4 $sap_code");
+            \DB::disconnect('75');
+            return $data;
+        }
+    }
 }
