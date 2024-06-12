@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-6">
                             <h5 class="w-100 text-center">Tipo de red:</h5>
-                            <select id="select" v-model="selectedOption" class="form-control w-100 mt-2">
+                            <select id="select" v-model="selectedOption" class="form-control w-100 mt-2" onchange="setRankFilter(this.value)">
                                 <option value="" disabled selected>Seleccione una genealogía...</option>
                                 <option value="1">Grupo Personal</option>
                                 <option value="2">Árbol completo</option>
@@ -169,5 +169,27 @@
                 }
             });
         }
+
+        function setRankFilter(type){
+            $("#selectRank").empty();
+            if(parseInt(type) === 1){
+                $("#selectRank").append(new Option("Todos los rangos", '0'));
+                $("#selectRank").append(new Option("Directo", '1'));
+                $("#selectRank").append(new Option("Superior", '2'));
+                $("#selectRank").append(new Option("Ejecutivo", '3'));
+            }
+            else{
+                $("#selectRank").append(new Option("Todos los rangos", '0'));
+                $("#selectRank").append(new Option("Directo", '1'));
+                $("#selectRank").append(new Option("Superior", '2'));
+                $("#selectRank").append(new Option("Ejecutivo", '3'));
+                $("#selectRank").append(new Option("Plata", '4'));
+                $("#selectRank").append(new Option("Oro", '5'));
+                $("#selectRank").append(new Option("Platino", '6'));
+                $("#selectRank").append(new Option("Diamante", '7'));
+                $("#selectRank").append(new Option("Diamante Real", '8'));
+            }
+        }
+        setRankFilter(1)
     </script>
 </html>
