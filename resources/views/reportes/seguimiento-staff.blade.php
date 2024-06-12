@@ -86,6 +86,7 @@
                         }).then(response => {
                             if (response.data) {
                                 //console.log('Datos recibidos:', response.data);
+                                $("#cargando").hide();
                                 this.updateTable(response.data);
                             }
                     }).catch(error => {
