@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
     
 </head>
 <body>
@@ -30,7 +29,6 @@
     <script src="https://kit.fontawesome.com/19cc44ce18.js" crossorigin="anonymous"></script>
 
     <script src="{{ mix('js/app.js') }}"></script>
-    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
     @stack('scripts')
 </body>
