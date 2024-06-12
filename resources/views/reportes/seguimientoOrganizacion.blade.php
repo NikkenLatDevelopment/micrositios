@@ -186,7 +186,7 @@
                             $("#associatesTable").DataTable({
                                 searching: false,
                                 ordering: false,
-                                paging: false,
+                                paging: true,
                                 info: true,
                                 destroy: true,
                                 deferRender: true,
