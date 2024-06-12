@@ -47,7 +47,7 @@
                                     Si el socio accede al descuento este solo será aplicable bajo su código, este se extiende a los clientes afiliados incorporados bajo su código que cumplieron requisitos.
                                 </li>
                                 <li>
-                                    Este descuento será de uso exclusivo del socio ganador, no podrá publicarlo en redes sociales.    
+                                    Este descuento es exclusivo para el socio ganador, no es transferible y no se puede compartir en redes sociales.
                                 </li>
                             </ul>
                             <strong>NIKKEN Latinoamérica se reserva la interpretación de esta estrategia.</strong>
