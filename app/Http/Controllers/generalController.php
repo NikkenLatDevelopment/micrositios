@@ -18,13 +18,13 @@ class generalController extends Controller
     {
         //
         //dd("ss");
-        
-        return view('reportes.seguimientoOrganizacion', ['cod' => $cod]);
+        $decodedCod = base64_decode($cod);
+        return view('reportes.seguimientoOrganizacion', ['cod' => $decodedCod]);
     }
 
 
     public function get_seguimiento_organizacion_personal(Request $request){
-        
+        //$decodedCod = base64_decode($request->codigo);
         //dd($request->codigo);
         $query = "
             SELECT associateid, associateName, tipo,
@@ -152,6 +152,8 @@ OR ganador = 1";
 
     public function index_seguimiento_personal($cod)
     {
+
+        $decodedCod = base64_decode($cod);
         
         $query = "
         SELECT  associateid
@@ -175,7 +177,7 @@ OR ganador = 1";
         , CASE WHEN semana_5= 1 THEN 'SI' ELSE 'NO' END AS semana_5
         , CASE WHEN ganador= 1 THEN 'SI' ELSE 'NO' END AS ganador
         FROM dwt_estrategiareto4x4
-        WHERE associateid = ".$cod.";";
+        WHERE associateid = ".$decodedCod.";";
         //
         //dd($query);
         $results = DB::connection('75')->select($query);
