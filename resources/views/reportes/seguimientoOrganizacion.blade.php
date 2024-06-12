@@ -172,6 +172,14 @@
                                 <td>${ganador}</td>
                             </tr>`;
                             $('#associatesTable tbody').append(row);
+                            $("#associatesTable").DataTable({
+                                searching: false,
+                                ordering: false,
+                                paging: false,
+                                info: true,
+                                destroy: true,
+                                deferRender: true,
+                            });
                         });
                     },
                     exportToExcel: function() {
@@ -181,14 +189,6 @@
                         XLSX.writeFile(wb, "seguimiento_organizacion.xlsx");
                     }
                 }
-            });
-            $("#associatesTable").DataTable({
-                searching: false,
-                ordering: false,
-                paging: true,
-                info: true,
-                destroy: true,
-                deferRender: true,
             });
 
         </script>
