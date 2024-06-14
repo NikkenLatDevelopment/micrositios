@@ -45,7 +45,10 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Rango</th>
+                        <th scope="col">País</th>
+                        <th scope="col">Codigo Patricinador</th>
                         <th scope="col">Patrocinador</th>
+                        <th scope="col">Rango Patrocinador</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Semana 1</th>
@@ -122,7 +125,10 @@
                             var associatename = item.associatename || item.associateName;
                             var tipo = item.tipo || '';
                             var rangoSocio = item.rangoSocio || '';
+                            var pais = item.pais || '';
+                            var sponsorid = item.sponsorid || item.sponsorid;
                             var sponsorname = item.sponsorname || item.sponsorName;
+                            var rangoSponsor = item.rangoSponsor || item.rangoSponsor;
                             var telefono = item.telefono ? item.telefono.trim() : '';
                             var email = item.email ? item.email.trim() : '';
                             var semana_1 = item.semana_1 || 'NO';
@@ -136,7 +142,10 @@
                                 <td>${associatename}</td>
                                 <td>${tipo}</td>
                                 <td>${rangoSocio}</td>
+                                <td>${pais}</td>
+                                <td>${sponsorid}</td>
                                 <td>${sponsorname}</td>
+                                <td>${rangoSponsor}</td>
                                 <td style="max-width:100px;">${telefono}</td>
                                 <td>${email}</td>
                                 <td>${semana_1}</td>
