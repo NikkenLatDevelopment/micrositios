@@ -48,8 +48,10 @@
                                 </li>
                                 <li>
                                     Este descuento es exclusivo para el socio ganador, no es transferible y no se puede compartir en redes sociales.
-                                </li>
+                                </li>                                
                             </ul>
+                            <p><strong><u><em>Las semanas en color gris en el gráfico representan las semanas en las que no se ha cumplido el reto.</em></u></strong></p>
+                            <p>¡Aprovecha los descuentos exclusivos que NIKKEN te ofrece este 30 de junio! Obtén 3 cupones con un 10% de descuento para usar en julio.</p>
                             <strong>NIKKEN Latinoamérica se reserva la interpretación de esta estrategia.</strong>
                         </div>
                         
