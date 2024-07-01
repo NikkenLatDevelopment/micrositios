@@ -55,7 +55,7 @@
                         <th scope="col">Semana 2</th>
                         <th scope="col">Semana 3</th>
                         <th scope="col">Semana 4</th>
-                        <th scope="col">Semana 5</th>
+                        <th scope="col">Día Comodín</th>
                         <th scope="col">Cumple 4x4</th>
                         </tr>
                     </thead>
