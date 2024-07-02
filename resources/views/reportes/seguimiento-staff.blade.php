@@ -135,7 +135,9 @@
                             var semana_2 = item.semana_2 || 'NO';
                             var semana_3 = item.semana_3 || 'NO';
                             var semana_4 = item.semana_4 || 'NO';
+                            var semana_5 = item.semana_5 || 'NO';
                             var ganador = item.ganador || 'NO';
+                            console.log()
 
                             var row = `<tr>
                                 <td>${associateId}</td>
@@ -152,6 +154,7 @@
                                 <td>${semana_2}</td>
                                 <td>${semana_3}</td>
                                 <td>${semana_4}</td>
+                                <td>${semana_5}</td>
                                 <td>${ganador}</td>
                             </tr>`;
                             $('#associatesTable tbody').append(row);
